@@ -15,8 +15,8 @@
  * Helper class which defines the translations   							   *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 28-07-2014                                                            *
- * @version 1.0                                                                *
+ * @date 29-07-2014                                                            *
+ * @version 1.2                                                                *
  ******************************************************************************/
 
 package aml.util;
@@ -83,7 +83,7 @@ public class DictionaryWord {
         return desiredTranslations;
     }
 
-    public List<DictionaryWord> getTranslations(String langCode) {
+    public List<DictionaryWord> getTranslations(String langCode) {  
         return translations.get(langCode);
     }
 
