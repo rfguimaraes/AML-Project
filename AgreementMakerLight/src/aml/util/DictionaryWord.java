@@ -66,7 +66,9 @@ public class DictionaryWord {
     public List<DictionaryWord> getTranslations() {
         List<DictionaryWord> allTranslations = new ArrayList<DictionaryWord>();
         for (String langCode : translations.keySet()) {
-            allTranslations.addAll(translations.get(langCode));
+            if (translations.get(langCode) != null) {
+                allTranslations.addAll(translations.get(langCode));
+            }
         }
         return allTranslations;
     }
@@ -74,7 +76,9 @@ public class DictionaryWord {
     public List<DictionaryWord> getTranslations(List<String> langCodes) {
         List<DictionaryWord> desiredTranslations = new ArrayList<DictionaryWord>();
         for (String langCode : langCodes) {
-            desiredTranslations.addAll(translations.get(langCode));
+            if (translations.get(langCode) != null) {
+                desiredTranslations.addAll(translations.get(langCode));
+            }
         }
         return desiredTranslations;
     }
