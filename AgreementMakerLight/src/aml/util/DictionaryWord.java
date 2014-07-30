@@ -15,8 +15,8 @@
  * Helper class which defines the translations   							   *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 29-07-2014                                                            *
- * @version 1.2                                                                *
+ * @date 30-07-2014                                                            *
+ * @version 1.3                                                                *
  ******************************************************************************/
 
 package aml.util;
@@ -24,8 +24,6 @@ package aml.util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.xpath.operations.String;
 
 public class DictionaryWord {
     private String langCode;
@@ -84,7 +82,15 @@ public class DictionaryWord {
     }
 
     public List<DictionaryWord> getTranslations(String langCode) {  
-        return translations.get(langCode);
+        if (translations.containsKey(langCode)) {
+            return translations.get(langCode);
+        }
+        else
+            return new ArrayList<DictionaryWord>();
+    }
+    
+    public String toString() {
+        return getLangCode() + "@" + getWrittenForm();
     }
 
 }
