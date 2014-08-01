@@ -71,7 +71,6 @@ public class RepairMap implements Iterable<Integer>
 
 	// HashMap that stores all terms of checklist that were already computed
 	public ConcurrentHashMap<Integer,HashMap<Integer,Vector<Vector<Mapping>>>> conflictsMapComputed = new ConcurrentHashMap<Integer,HashMap<Integer,Vector<Vector<Mapping>>>>();
-	public Table3<Integer,Integer,Path> table3 = new Table3<Integer, Integer, Path>();
 	// The current set of conflicting sets of mappings (created during built)
 	private Vector<Vector<Mapping>> currentConflictSets = new Vector<Vector<Mapping>>();
 
