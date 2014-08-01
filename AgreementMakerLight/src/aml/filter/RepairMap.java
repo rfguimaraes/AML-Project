@@ -23,6 +23,7 @@
  ******************************************************************************/
 package aml.filter;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,11 +40,12 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import aml.AML;
+import aml.AML.MappingRelation;
 import aml.match.Alignment;
 import aml.match.Mapping;
-import aml.AML.MappingRelation;
 import aml.ontology.RelationshipMap;
 import aml.util.Table2Plus;
+import aml.util.Table3;
 
 public class RepairMap implements Iterable<Integer>
 {
@@ -69,7 +71,7 @@ public class RepairMap implements Iterable<Integer>
 
 	// HashMap that stores all terms of checklist that were already computed
 	public ConcurrentHashMap<Integer,HashMap<Integer,Vector<Vector<Mapping>>>> conflictsMapComputed = new ConcurrentHashMap<Integer,HashMap<Integer,Vector<Vector<Mapping>>>>();
-	public Table3<Integer,Integer,Path> 
+	public Table3<Integer,Integer,Path> table3 = new Table3<Integer, Integer, Path>();
 	// The current set of conflicting sets of mappings (created during built)
 	private Vector<Vector<Mapping>> currentConflictSets = new Vector<Vector<Mapping>>();
 
