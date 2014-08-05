@@ -31,7 +31,7 @@ import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import aml.filter.Repairer;
+import aml.filter.RepairerOld;
 import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
 import aml.match.Alignment;
@@ -72,7 +72,7 @@ public class AML
 	
 	//Lexical types and weights
 	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
-	private final String[] WEIRD_LANGUAGES = {"cn", "cz", "ru"};
+	private final String[] NON_LATIN_LANGUAGES = {"cn", "cz", "jp", "kr", "ru"};
 	private HashMap<String,Double> typeWeights;
 	
 	//Background knowledge path and sources
@@ -445,9 +445,9 @@ public class AML
     	return ignoreUMLS;
     }
     
-    public boolean isWeird(String lang)
+    public boolean isNonLatin(String lang)
     {
-    	for(String s : WEIRD_LANGUAGES)
+    	for(String s : NON_LATIN_LANGUAGES)
     		if(lang.equals(s))
     			return true;
     	return false;
@@ -477,7 +477,8 @@ public class AML
     	else
     		currentMapping = -1;
     	evaluation = null;
-    	userInterface.refresh();
+    	if(userInterface != null)
+    		userInterface.refresh();
     }
     
     public boolean matchProperties()
@@ -611,7 +612,7 @@ public class AML
     
     public void repair()
     {
-		Repairer r = new Repairer();
+		RepairerOld r = new RepairerOld();
 		a = r.repair(a);
     	if(a.size() >= 1)
     		currentMapping = 0;

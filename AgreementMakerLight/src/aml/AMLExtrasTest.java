@@ -19,6 +19,7 @@ public class AMLExtrasTest {
         System.out.println(d.translate("pt", "saudade", "ko"));
         System.out.println(d.translate("pt", "saudade", "jp"));
         System.out.println(d.getAllTranslations("en", "dog"));
+        System.out.println();
 
     }
 }
