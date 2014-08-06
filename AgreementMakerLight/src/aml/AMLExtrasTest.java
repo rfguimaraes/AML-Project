@@ -17,7 +17,7 @@
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
  * @date 30-07-2014                                                            *
- * @version 0.4                                                                *
+ * @version 0.41                                                            *
  ******************************************************************************/
 
 package aml;
@@ -26,6 +26,13 @@ import aml.match.WikDictMatcher;
 
 public class AMLExtrasTest {
     public static void main(String[] args) {
+        //Path to input ontology files (edit manually)
+        String sourcePath = "store/anatomy/mouse.owl";
+        String targetPath = "store/anatomy/human.owl";
+
+
+        AML aml = AML.getInstance();
+        aml.openOntologies(sourcePath, targetPath);
         WikDictMatcher wikmatch = new WikDictMatcher();
     }
 }
