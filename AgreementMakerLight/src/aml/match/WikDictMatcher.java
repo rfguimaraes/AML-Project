@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright 2013-2014 LASIGE                                                  *
+ * Copyright 2014-2014 Ricardo F. Guimarães                                    *
  *                                                                             *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
  * not use this file except in compliance with the License. You may obtain a   *
@@ -13,16 +13,24 @@
  *                                                                             *
  *******************************************************************************
  * Matches Ontologies by finding literal full-name matches between their       *
- * Lexicons after extension with the WordNet.                                  *
- *                                                                             *
+ * Lexicons after extension with the data obtained from the English Wiktionary,*
+ * using wik2dict.                                                             *
  * @author Ricardo F. Guimarães                                                *
- * @date 05-08-2014                                                            *
- * @version 0.1                                                                *
+ * @date 06-08-2014                                                            *
+ * @version 0.5                                                                *
  ******************************************************************************/
 
 package aml.match;
 
+import aml.AML;
+import aml.ontology.Lexicon;
 import aml.util.Dictionary;
+import aml.util.DictionaryWord;
+import aml.util.StringParser;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by rickfg on 8/5/14.
@@ -36,12 +44,14 @@ public class WikDictMatcher implements PrimaryMatcher, LexiconExtender {
     private final String SOURCE = "English Wiktionary (wik2dict)";
     // The confidence score of the English Wiktionary
     private final double CONFIDENCE = 0.7;
+    //The dictionary
+    private Dictionary wikt;
 
     public WikDictMatcher() {
 
         // Setup the wik2dict output file location
         long time = System.currentTimeMillis() / 1000;
-        Dictionary wik = new Dictionary(PATH, "English.txt");
+        wikt = new Dictionary(PATH, "English.txt");
         time = System.currentTimeMillis() / 1000 - time;
         System.out.println("Dictionary loaded in " + time + " seconds");
     }
@@ -53,6 +63,47 @@ public class WikDictMatcher implements PrimaryMatcher, LexiconExtender {
 
     @Override
     public void extendLexicons(double thresh) {
+        AML aml = AML.getInstance();
+        extendLexicon(aml.getSource().getLexicon(), thresh);
+        extendLexicon(aml.getTarget().getLexicon(), thresh);
+    }
 
+    private void extendLexicon(Lexicon l, double thresh) {
+        //Get a copy of the original Lexicon since the
+        //original will be extended during the iteration (otherwise
+        //we'd get a concurrentModificationException)
+        Lexicon copyL = new Lexicon(l);
+
+        //Iterate through the original Lexicon names
+        for (String s : copyL.getNames()) {
+            //We don't match formulas to Wiktionary
+            if (StringParser.isFormula(s))
+                continue;
+
+            List<DictionaryWord> translations = new ArrayList<DictionaryWord>();
+
+            for (String srcLang : copyL.getLanguages(s)) {
+                translations.addAll(wikt.getAllTranslations(srcLang, s));
+            }
+
+            if (translations.isEmpty())
+                continue;
+
+            double conf = CONFIDENCE - 0.01 * translations.size();
+            if (conf < thresh)
+                continue;
+
+            Set<Integer> terms = l.getInternalClasses(s);
+            //Add each term with the translation to the extension Lexicon
+            for (Integer i : terms) {
+                double weight = conf * l.getWeight(s, i);
+                if (weight < thresh)
+                    continue;
+                for (DictionaryWord w : translations) {
+                    l.add(i, w.getWrittenForm(), w.getLangCode(),
+                            TYPE, SOURCE, weight);
+                }
+            }
+        }
     }
 }
