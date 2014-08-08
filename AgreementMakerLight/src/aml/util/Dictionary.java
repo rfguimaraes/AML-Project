@@ -106,7 +106,9 @@ public class Dictionary {
 
     public List<DictionaryWord> getAllTranslations(String srcLang,
                                                    String writtenForm) {
-        return data.get(new Pair<String, String>(srcLang, writtenForm))
-                .getTranslations();
+        Pair<String, String> key = new Pair<String, String>(srcLang,
+                writtenForm);
+        if (!data.containsKey(key)) return new ArrayList<DictionaryWord>();
+        return data.get(key).getTranslations();
     }
 }

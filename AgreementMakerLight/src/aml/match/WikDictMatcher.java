@@ -159,7 +159,6 @@ public class WikDictMatcher implements PrimaryMatcher, LexiconExtender {
                         maxSim = sim;
                 }
             }
-
         }
         return maxSim;
     }
