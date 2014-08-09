@@ -75,8 +75,10 @@ public class Path implements Comparable<Path>, Iterable<Integer>
 
 	public boolean contains(Path p)
 	{
+		if(p.size() > size())
+			return false;
 		for(Integer i : p.path)
-			if(!this.path.contains(i))
+			if(!path.contains(i))
 				return false;
 		return true;
 	}
@@ -85,7 +87,6 @@ public class Path implements Comparable<Path>, Iterable<Integer>
 	{
 		return path.contains(m);
 	}
-	
 	
 	public boolean equals(Object o)
 	{
@@ -96,6 +97,16 @@ public class Path implements Comparable<Path>, Iterable<Integer>
 	public Iterator<Integer> iterator() 
 	{
 		return path.iterator();
+	}
+	
+	public void remove(int i)
+	{
+		path.remove(i);
+	}
+	
+	public void removeAll(Path p)
+	{
+		path.removeAll(p.path);
 	}
 	
 	public int size()
