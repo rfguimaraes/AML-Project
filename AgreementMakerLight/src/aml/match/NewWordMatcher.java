@@ -31,25 +31,31 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.AML.SizeCategory;
+import aml.ontology.AuxiliaryWordLexicon;
+import aml.ontology.NewWordLexicon;
 import aml.ontology.Ontology;
-
-import aml.ontology.WordLexicon;
 import aml.util.Table2;
-import aml.util.Table2Plus;
 
-public class WordMatcher implements PrimaryMatcher
+public class NewWordMatcher implements PrimaryMatcher, Rematcher
 {
 
 //Attributes
 	
 	private final int MAX_BLOCK_SIZE = 10000;
+	private NewWordLexicon sourceLex;
+	private NewWordLexicon targetLex;
 	
 //Constructors
 	
 	/**
 	 * Constructs a new WordMatcher
 	 */
-	public WordMatcher(){}
+	public NewWordMatcher()
+	{
+		AML aml = AML.getInstance();
+		sourceLex = new NewWordLexicon(aml.getSource().getLexicon());
+		targetLex = new NewWordLexicon(aml.getTarget().getLexicon());
+	}
 	
 //Public Methods
 	
@@ -78,11 +84,11 @@ public class WordMatcher implements PrimaryMatcher
 			for(Integer i : sourcesToMap.keySet())
 			{
 				HashSet<Integer> sources = new HashSet<Integer>(sourcesToMap.get(i));
-				WordLexicon sWLex = new WordLexicon(source.getLexicon(),sources);
+				AuxiliaryWordLexicon sWLex = new AuxiliaryWordLexicon(source.getLexicon(),sources);
 				for(Integer j : targetsToMap.keySet())
 				{
 					HashSet<Integer> targets = new HashSet<Integer>(targetsToMap.get(j));
-					WordLexicon tWLex = new WordLexicon(target.getLexicon(),targets);
+					AuxiliaryWordLexicon tWLex = new AuxiliaryWordLexicon(target.getLexicon(),targets);
 					a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
 					System.out.println(++count);
 				}
@@ -90,25 +96,115 @@ public class WordMatcher implements PrimaryMatcher
 		}
 		else
 		{
-			WordLexicon sWLex = new WordLexicon(source.getLexicon());
-			WordLexicon tWLex = new WordLexicon(target.getLexicon());
+			AuxiliaryWordLexicon sWLex = new AuxiliaryWordLexicon(source.getLexicon());
+			AuxiliaryWordLexicon tWLex = new AuxiliaryWordLexicon(target.getLexicon());
 			a.addAll(matchWordLexicons(sWLex,tWLex,thresh));
 		}
 		return a;
 	}
 	
-	/**
-	 * Matches two WordLexicons
-	 * @param sWLex: the source WordLexicon to match
-	 * @param tWLex: the target WordLexicon to match
-	 * @param thresh: the similarity threshold
-	 * @return the Alignment between the ontologies containing
-	 * the two WordLexicons
-	 */
-	public Alignment matchWordLexicons(WordLexicon sWLex, WordLexicon tWLex, double thresh)
+	@Override
+	public Alignment rematch(Alignment a)
 	{
-		Table2Plus<Integer,Integer,Double> maps = new Table2Plus<Integer,Integer,Double>();
-		WordLexicon larger, smaller;
+		Alignment maps = new Alignment();
+		for(Mapping m : a)
+			maps.add(mapTwoClasses(m.getSourceId(),m.getTargetId()));
+		return maps;
+	}
+	
+//Private
+	
+	private Mapping mapTwoClasses(int sourceId, int targetId)
+	{
+		double maxSim = 0.0;
+		double sim, weight;
+		Set<String> sourceNames = sourceLex.getNames(sourceId);
+		Set<String> targetNames = targetLex.getNames(targetId);
+		for(String s : sourceNames)
+		{
+			weight = sourceLex.getWeight(s,sourceId);
+			for(String t : targetNames)
+			{
+				sim = weight * targetLex.getWeight(t, targetId);
+				sim *= wordSimilarityFlat(s,t);
+				if(sim > maxSim)
+					maxSim = sim;
+			}
+		}
+		maxSim = Math.max(maxSim,0.85*classSimilarityFlat(sourceId,targetId));
+		return new Mapping(sourceId,targetId,maxSim);
+	}
+
+	private double classSimilarity(int sourceId, int targetId)
+	{
+		Set<String> sourceWords = sourceLex.getWords(sourceId);
+		Set<String> targetWords = targetLex.getWords(targetId);
+		double intersection = 0.0;
+		double union = 0.0;
+		for(String w : sourceWords)
+		{
+			union += sourceLex.getEC(w);
+			if(targetWords.contains(w))
+				intersection += Math.sqrt(sourceLex.getEC(w) * targetLex.getEC(w));
+		}			
+		for(String w : targetWords)
+			union += targetLex.getEC(w);
+		union *= 0.5;
+		union -= intersection;
+		return intersection / union;
+	}
+	
+	private double classSimilarityFlat(int sourceId, int targetId)
+	{
+		Set<String> sourceWords = sourceLex.getWords(sourceId);
+		Set<String> targetWords = targetLex.getWords(targetId);
+		double intersection = 0.0;
+		double union = sourceWords.size() + targetWords.size();
+		for(String w : sourceWords)
+			if(targetWords.contains(w))
+				intersection++;
+		union -= intersection;
+		return intersection / union;
+	}
+	
+	private double wordSimilarity(String s, String t)
+	{
+		Set<String> sourceWords = sourceLex.getWords(s);
+		Set<String> targetWords = targetLex.getWords(t);
+		double intersection = 0.0;
+		double union = 0.0;
+		for(String w : sourceWords)
+		{
+			union += sourceLex.getEC(w);
+			if(targetWords.contains(w))
+				intersection += Math.sqrt(sourceLex.getEC(w) * targetLex.getEC(w));
+		}			
+		for(String w : targetWords)
+			union += targetLex.getEC(w);
+		union *= 0.5;
+		union -= intersection;
+		return intersection/union;
+	}
+	
+	private double wordSimilarityFlat(String s, String t)
+	{
+		Set<String> sourceWords = sourceLex.getWords(s);
+		Set<String> targetWords = targetLex.getWords(t);
+		double intersection = 0.0;
+		double union = sourceWords.size() + targetWords.size();
+		for(String w : sourceWords)
+			if(targetWords.contains(w))
+				intersection++;
+		union -= intersection;
+		return intersection/union;
+	}
+
+	//Matches two auxiliary word lexicons finding all class pairs that share a word
+	private Alignment matchWordLexicons(AuxiliaryWordLexicon sWLex, AuxiliaryWordLexicon tWLex, double thresh)
+	{
+		Alignment maps = new Alignment();
+		Table2<Integer,Integer> computedMappings = new Table2<Integer,Integer>();
+		AuxiliaryWordLexicon larger, smaller;
 		//To minimize iterations, we want to iterate through the smallest Lexicon
 		boolean sourceIsSmaller = (sWLex.wordCount() <= tWLex.wordCount());
 		if(sourceIsSmaller)
@@ -130,16 +226,11 @@ public class WordMatcher implements PrimaryMatcher
 			Vector<Integer> smallerIndexes = smaller.getClasses(s);
 			if(largerIndexes == null)
 				continue;
-			//Otherwise, compute the average EC
-			double smallerEc = smaller.getEC(s);
-			double largerEc = larger.getEC(s);
 			//Then match all indexes
 			for(Integer i : smallerIndexes)
 			{
-				double smallerSim = smallerEc * smaller.getWeight(s, i);
 				for(Integer j : largerIndexes)
 				{
-					double largerSim = largerEc * larger.getWeight(s, j);
 					int sourceId, targetId;
 					if(sourceIsSmaller)
 					{
@@ -151,27 +242,15 @@ public class WordMatcher implements PrimaryMatcher
 						sourceId = j;
 						targetId = i;
 					}
-					Double sim = maps.get(sourceId,targetId);
-					if(sim == null)
-						sim = 0.0;
-					sim += Math.sqrt(smallerSim * largerSim);
-					maps.add(sourceId,targetId,sim);
+					if(computedMappings.contains(sourceId, targetId))
+						continue;
+					Mapping m = mapTwoClasses(sourceId,targetId);
+					computedMappings.add(sourceId,targetId);
+					if(m.getSimilarity()>=thresh)
+						maps.add(m);
 				}
 			}
 		}
-		Set<Integer> sources = maps.keySet();
-		Alignment a = new Alignment();
-		for(Integer i : sources)
-		{
-			Set<Integer> targets = maps.keySet(i);
-			for(Integer j : targets)
-			{
-				double sim = maps.get(i,j);
-				sim /= sWLex.getEC(i) + tWLex.getEC(j) - sim;
-				if(sim >= thresh)
-					a.add(new Mapping(i, j, sim));
-			}
-		}
-		return a;
+		return maps;
 	}
 }
