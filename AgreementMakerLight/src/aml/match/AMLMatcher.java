@@ -24,7 +24,7 @@ import java.util.Vector;
 
 import aml.AML;
 import aml.AML.SelectionType;
-import aml.filter.RepairerOld;
+import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 
 public class AMLMatcher implements PrimaryMatcher
@@ -63,12 +63,6 @@ public class AMLMatcher implements PrimaryMatcher
 		//Do the lexical match
     	LexicalMatcher lm = new LexicalMatcher();
 		Alignment a = lm.match(BASE_THRESH);
-		//If the selection is on auto, set it now
-		if(sType.equals(SelectionType.AUTO))
-		{
-			RankedSelector s = new RankedSelector(a);
-			sType = s.getSelectionType();
-		}
 		//If background knowledge is on auto, call the AutoBKMatcher
 		if(bkSources != null && bkSources.size() > 0)
 		{
@@ -91,8 +85,8 @@ public class AMLMatcher implements PrimaryMatcher
 		}
 		if(repair)
 		{
-			RepairerOld rep = new RepairerOld();
-			a = rep.repair(a);
+			CardinalityRepairer rep = new CardinalityRepairer(a);
+			a = rep.repair();
 		}
 		return a;
 	}

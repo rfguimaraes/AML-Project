@@ -16,7 +16,7 @@
 * removed mappings.                                                           *
 *                                                                             *
 * @author Daniel Faria & Emanuel Santos                                       *
-* @date 01-08-2014                                                            *
+* @date 10-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.filter;
@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.Vector;
 
 import aml.match.Alignment;
-import aml.util.Table2;
+import aml.util.Table2List;
 
 public class CardinalityRepairer implements Repairer
 {
@@ -34,8 +34,8 @@ public class CardinalityRepairer implements Repairer
 	
 	private Alignment toRepair;
 	private Vector<Path> conflictSets;
-	private Table2<Integer,Integer> conflictMappings;
-	private Table2<Integer,Integer> mappingConflicts;
+	private Table2List<Integer,Integer> conflictMappings;
+	private Table2List<Integer,Integer> mappingConflicts;
 	
 //Constructors
 
@@ -55,6 +55,10 @@ public class CardinalityRepairer implements Repairer
 	@Override
 	public Alignment repair()
 	{
+		if(conflictSets.size() == 0)
+			return new Alignment(toRepair);
+		System.out.println("Repairing alignment");
+		long time = System.currentTimeMillis()/1000;
 		HashSet<Integer> toRemove = new HashSet<Integer>();
 		while(conflictMappings.size() > 0)
 		{
@@ -68,6 +72,9 @@ public class CardinalityRepairer implements Repairer
 			if(!toRemove.contains(i))
 				repaired.add(toRepair.get(i));
 		}
+		System.out.println("Finished repair in " + 
+				(System.currentTimeMillis()/1000-time) + " seconds");
+		System.out.println("Removed " + toRemove.size() + " mappings");
 		return repaired;
 	}
 	
@@ -94,8 +101,8 @@ public class CardinalityRepairer implements Repairer
 	
 	private void init()
 	{
-		conflictMappings = new Table2<Integer,Integer>();
-		mappingConflicts = new Table2<Integer,Integer>();
+		conflictMappings = new Table2List<Integer,Integer>();
+		mappingConflicts = new Table2List<Integer,Integer>();
 		
 		for(int i = 0; i < conflictSets.size(); i++)
 		{

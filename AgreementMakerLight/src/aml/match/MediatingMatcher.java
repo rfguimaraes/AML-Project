@@ -17,11 +17,12 @@
 * LexicalMatcher. Extends Lexicons with synonyms from the mediating ontology. *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 31-07-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
+import java.io.File;
 import java.util.Set;
 
 import aml.AML;
@@ -52,12 +53,33 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 		ext = x.getLexicon();
 		uri = x.getURI();
 	}
+	
+	/**
+	 * Constructs a MediatingMatcher with the given external Lexicon file
+	 * @param file: the file with the external Lexicon
+	 */
+	public MediatingMatcher(String file)
+	{
+		try
+		{
+			ext = new Lexicon(file);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Unable to build lexicon: " + file);
+			e.printStackTrace();
+			ext = new Lexicon();
+		}
+		uri = (new File(file)).getName();
+	}
 
 //Public Methods
 	
 	@Override
 	public void extendLexicons(double thresh)
 	{
+		System.out.println("Extending Lexicons with Mediating Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		LexicalMatcher lm = new LexicalMatcher();
 		Lexicon source = aml.getSource().getLexicon();
@@ -86,11 +108,15 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 					target.add(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 	}
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Mediating Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
 		Lexicon target = aml.getTarget().getLexicon();
@@ -110,6 +136,8 @@ public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 				maps.add(new Mapping(sourceId,j,similarity));
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 }
