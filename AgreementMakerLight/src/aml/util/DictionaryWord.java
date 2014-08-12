@@ -1,5 +1,5 @@
-/******************************************************************************
- * Copyright 2013-2013 LASIGE                                                  *
+/*******************************************************************************
+ * Copyright 2014-2014 Ricardo F. Guimarães                                    *
  *                                                                             *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
  * not use this file except in compliance with the License. You may obtain a   *
@@ -12,7 +12,7 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * Helper class which defines the translations   							   *
+ * Helper class which defines the translations (language and written form)     *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
  * @date 30-07-2014                                                            *
