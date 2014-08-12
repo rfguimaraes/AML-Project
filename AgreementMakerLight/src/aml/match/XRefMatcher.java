@@ -17,20 +17,19 @@
 * cross-references.                                                           *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
 import java.util.Set;
-import java.util.Vector;
 
 import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.ReferenceMap;
 
-public class XRefMatcher implements Matcher
+public class XRefMatcher implements PrimaryMatcher, LexiconExtender
 {
 	
 //Attributes
@@ -58,41 +57,10 @@ public class XRefMatcher implements Matcher
 //Public Methods
 
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		AML aml = AML.getInstance();
-		Ontology source = aml.getSource();
-		Ontology target = aml.getSource();
-		src = match(source,thresh);
-		tgt = match(target,thresh);
-		Alignment maps = new Alignment();
-		for(Mapping m : src)
-		{
-			int sourceId = m.getSourceId();
-			if(a.containsSource(sourceId))
-				continue;
-			int medId = m.getTargetId();
-			Set<Integer> matches = tgt.getTargetMappings(medId);
-			for(Integer j : matches)
-			{
-				if(a.containsTarget(j))
-					continue;
-				double similarity = Math.min(m.getSimilarity(),
-						tgt.getSimilarity(j, medId));
-				maps.add(new Mapping(sourceId,j,similarity));
-			}
-		}
-		return maps;
-	}
-	
-	/**
-	 * Extends the Lexicons of the source and target Ontologies
-	 * using WordNet
-	 * @param thresh: the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
-	 */
 	public void extendLexicons(double thresh)
 	{
+		System.out.println("Extending Lexicons with Cross-Reference Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon x = ext.getLexicon();
 		Ontology o = aml.getSource();
@@ -129,11 +97,15 @@ public class XRefMatcher implements Matcher
 					lex.add(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 	}
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Cross-Reference Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Ontology source = aml.getSource();
 		Ontology target = aml.getTarget();
@@ -152,6 +124,8 @@ public class XRefMatcher implements Matcher
 				maps.add(new Mapping(sourceId,j,similarity));
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 	
@@ -169,7 +143,7 @@ public class XRefMatcher implements Matcher
 			{
 				if(names.contains(r))
 				{
-					Vector<Integer> terms = rm.get(r);
+					Set<Integer> terms = rm.get(r);
 					//Penalize cases where multiple terms have the same xref
 					//(note that sim = 1 when the xref is unique) 
 					double sim = 1.3 - (terms.size() * 0.3);

@@ -14,23 +14,24 @@
 *******************************************************************************
 * Matches Ontologies by finding literal full-name matches between their       *
 * Lexicons and the Lexicon of a third mediating Ontology, by employing the    *
-* LexicalMatcher.                                                             *
+* LexicalMatcher. Extends Lexicons with synonyms from the mediating ontology. *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
 
+import java.io.File;
 import java.util.Set;
 
 import aml.AML;
 import aml.match.LexicalMatcher;
-import aml.match.Matcher;
+import aml.match.PrimaryMatcher;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 
-public class MediatingMatcher implements Matcher
+public class MediatingMatcher implements PrimaryMatcher, LexiconExtender
 {
 
 //Attributes
@@ -52,46 +53,33 @@ public class MediatingMatcher implements Matcher
 		ext = x.getLexicon();
 		uri = x.getURI();
 	}
+	
+	/**
+	 * Constructs a MediatingMatcher with the given external Lexicon file
+	 * @param file: the file with the external Lexicon
+	 */
+	public MediatingMatcher(String file)
+	{
+		try
+		{
+			ext = new Lexicon(file);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Unable to build lexicon: " + file);
+			e.printStackTrace();
+			ext = new Lexicon();
+		}
+		uri = (new File(file)).getName();
+	}
 
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		AML aml = AML.getInstance();
-		Lexicon source = aml.getSource().getLexicon();
-		Lexicon target = aml.getTarget().getLexicon();
-		LexicalMatcher lm = new LexicalMatcher();
-		Alignment src = lm.match(source,ext,thresh);
-		Alignment tgt = lm.match(target,ext,thresh);
-		Alignment maps = new Alignment();
-		for(Mapping m : src)
-		{
-			int sourceId = m.getSourceId();
-			if(a.containsSource(sourceId))
-				continue;
-			int medId = m.getTargetId();
-			Set<Integer> matches = tgt.getTargetMappings(medId);
-			for(Integer j : matches)
-			{
-				if(a.containsTarget(j))
-					continue;
-				double similarity = Math.min(m.getSimilarity(),
-						tgt.getSimilarity(j, medId));
-				maps.add(new Mapping(sourceId,j,similarity));
-			}
-		}
-		return maps;
-	}
-	
-	/**
-	 * Extends the Lexicons of the source and target Ontologies
-	 * using WordNet
-	 * @param thresh: the minimum confidence threshold below
-	 * which synonyms will not be added to the Lexicons
-	 */
 	public void extendLexicons(double thresh)
 	{
+		System.out.println("Extending Lexicons with Mediating Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		LexicalMatcher lm = new LexicalMatcher();
 		Lexicon source = aml.getSource().getLexicon();
@@ -120,11 +108,15 @@ public class MediatingMatcher implements Matcher
 					target.add(m.getSourceId(), n, TYPE, uri, sim);
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 	}
 	
 	@Override
 	public Alignment match(double thresh)
 	{
+		System.out.println("Running Mediating Matcher using " + uri);
+		long time = System.currentTimeMillis()/1000;
 		AML aml = AML.getInstance();
 		Lexicon source = aml.getSource().getLexicon();
 		Lexicon target = aml.getTarget().getLexicon();
@@ -144,6 +136,8 @@ public class MediatingMatcher implements Matcher
 				maps.add(new Mapping(sourceId,j,similarity));
 			}
 		}
+		time = System.currentTimeMillis()/1000 - time;
+		System.out.println("Finished in " + time + " seconds");
 		return maps;
 	}
 }

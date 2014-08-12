@@ -16,11 +16,15 @@
 * Lexical entries are weighted according to their provenance.                 *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +33,7 @@ import java.util.Vector;
 import aml.AML;
 import aml.util.StopList;
 import aml.util.StringParser;
-import aml.util.Table3;
+import aml.util.Table3List;
 
 
 public class Lexicon
@@ -38,9 +42,9 @@ public class Lexicon
 //Attributes
 	
 	//The table of names
-	private Table3<String,Integer,Provenance> names;
+	private Table3List<String,Integer,Provenance> names;
 	//The table of classes
-	private Table3<Integer,String,Provenance> classes;
+	private Table3List<Integer,String,Provenance> classes;
 	//The language counts
 	private HashMap<String,Integer> langCount;
 	
@@ -52,8 +56,8 @@ public class Lexicon
 	 */
 	public Lexicon()
 	{
-		names = new Table3<String,Integer,Provenance>();
-		classes = new Table3<Integer,String,Provenance>();
+		names = new Table3List<String,Integer,Provenance>();
+		classes = new Table3List<Integer,String,Provenance>();
 		langCount = new HashMap<String,Integer>();
 	}
 	
@@ -63,9 +67,31 @@ public class Lexicon
 	 */
 	public Lexicon(Lexicon l)
 	{
-		names = new Table3<String,Integer,Provenance>(l.names);
-		classes = new Table3<Integer,String,Provenance>(l.classes);
+		names = new Table3List<String,Integer,Provenance>(l.names);
+		classes = new Table3List<Integer,String,Provenance>(l.classes);
 		langCount = new HashMap<String,Integer>(l.langCount);
+	}
+	
+	/**
+	 * Reads a Lexicon from a given Lexicon file
+	 * @param file: the Lexicon file
+	 */
+	public Lexicon(String file) throws Exception
+	{
+		this();
+		AML aml = AML.getInstance();
+		BufferedReader inStream = new BufferedReader(new FileReader(file));
+		String line;
+		while((line = inStream.readLine()) != null)
+		{
+			String[] lex = line.split("\t");
+			int id = Integer.parseInt(lex[0]);
+			String name = lex[1];
+			String type = lex[2];
+			double weight = aml.getLexicalWeight(type);
+			add(id,name,type,"",weight);
+		}
+		inStream.close();
 	}
 
 //Public Methods
@@ -79,21 +105,22 @@ public class Lexicon
 	 */
 	public void add(int classId, String name, String type, String source, double weight)
 	{
-		//First ensure that the name contains letters
-		if(name == null || name.equals(""))
+		//First ensure that the name is not null or empty, and (since we're assuming that
+		//the language is English by default, ensure that it contains Latin characters)
+		if(name == null || name.equals("") || !name.matches(".*[a-zA-Z].*"))
 			return;
 
 		String s, lang;
 		Provenance p;
 
-		//Then check if it is a formula
+		//If it is a formula, parse it and label it as such
 		if(StringParser.isFormula(name))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = "Formula";
 			p = new Provenance("Formula", source, lang, weight);
 		}
-		//Or a normal name
+		//Otherwise, parse it normally
 		else
 		{
 			s = StringParser.normalizeName(name);
@@ -120,32 +147,41 @@ public class Lexicon
 	 */
 	public void add(int classId, String name, String language, String type, String source, double weight)
 	{
-		//First ensure that the name contains letters
+		//First ensure that the name is not null or empty
 		if(name == null || name.equals(""))
 			return;
 
 		String s, lang;
 		Provenance p;
 
-		if(AML.getInstance().isWeird(language))
+		//If the name is in a language that doesn't use a Latin character set
+		//we parse it as a formula (i.e., replace only '_' with ' ')
+		if(AML.getInstance().isNonLatin(language))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = language;
 			p = new Provenance(type, source, lang, weight);
 		}
-		//Then check if it is a formula
-		else if(StringParser.isFormula(name))
-		{
-			s = StringParser.normalizeFormula(name);
-			lang = "Formula";
-			p = new Provenance("Formula", source, lang, weight);
-		}
-		//Or a normal name
+		//Otherwise
 		else
 		{
-			s = StringParser.normalizeName(name);
-			lang = language;
-			p = new Provenance(type, source, lang, weight);
+			//If it doesn't contain Latin characters, don't add it
+			if(!name.matches(".*[a-zA-Z].*"))
+				return;
+			//If it is a formula, parse it and label it as such
+			else if(StringParser.isFormula(name))
+			{
+				s = StringParser.normalizeFormula(name);
+				lang = "Formula";
+				p = new Provenance("Formula", source, lang, weight);
+			}
+			//Otherwise, parse it normally
+			else
+			{
+				s = StringParser.normalizeName(name);
+				lang = language;
+				p = new Provenance(type, source, lang, weight);
+			}
 		}
 		//Then update the tables
 		names.add(s,classId,p);
@@ -263,7 +299,7 @@ public class Lexicon
 	 */
 	public void generateStopWordSynonyms()
 	{
-		Vector<String> stopList = StopList.read();
+		Set<String> stopList = StopList.read();
 		Vector<String> nm = new Vector<String>(names.keySet());
 		for(String n: nm)
 		{
@@ -648,6 +684,27 @@ public class Lexicon
 			sources.add(p.getSource());
 		return sources;
 	}
+	
+	/**
+	 * @param name: the name to search in the Lexicon
+	 * @param classId: the class to search in the Lexicon
+	 * @return the best type of the name for that class
+	 */
+	public String getType(String name, int classId)
+	{
+		String type = "";
+		double weight = 0.0;
+		for(Provenance p : names.get(name, classId))
+		{
+			if(p.getWeight() > weight)
+			{
+				weight = p.getWeight();
+				type = p.getType();
+			}
+		}
+		return type;
+	}
+	
 	/**
 	 * @param name: the name to search in the Lexicon
 	 * @param classId: the class to search in the Lexicon
@@ -667,14 +724,17 @@ public class Lexicon
 	/**
 	 * @param name: the name to search in the Lexicon
 	 * @param classId: the class to search in the Lexicon
-	 * @return the weight corresponding to the provenance of the name for that class
+	 * @return the best weight of the name for that class
 	 */
 	public double getWeight(String name, int classId)
 	{
 		if(!names.contains(name, classId))
 			return 0.0;
-		Provenance p = names.get(name, classId).get(0);
-		return p.getWeight();
+		double weight = 0.0;
+		for(Provenance p : names.get(name, classId))
+			if(p.getWeight() > weight)
+				weight = p.getWeight();
+		return weight;
 	}
 	
 	/**
@@ -814,6 +874,19 @@ public class Lexicon
 				if(p.getLanguage().equals(lang) && p.getType().equals(type))
 					count++;
 		return count;
+	}
+	
+	/**
+	 * Saves this Lexicon to the specified file
+	 * @param file: the file on which to save the Lexicon
+	 */
+	public void save(String file) throws Exception
+	{
+		PrintWriter outStream = new PrintWriter(new FileOutputStream(file));
+		for(Integer i : classes.keySet())
+			for(String n : classes.keySet(i))
+				outStream.println(i + "\t" + n + "\t" + getType(n,i));
+		outStream.close();
 	}
 
 	/**

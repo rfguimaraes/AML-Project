@@ -16,7 +16,7 @@
 * combining the best available background knowledge sources.                  *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 23-06-2014                                                            *
+* @date 12-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -29,7 +29,7 @@ import java.util.Vector;
 import aml.ontology.Ontology;
 import aml.util.MapSorter;
 
-public class BackgroundKnowledgeMatcher implements Matcher
+public class BackgroundKnowledgeMatcher implements PrimaryMatcher
 {
 	
 //Attributes
@@ -54,12 +54,6 @@ public class BackgroundKnowledgeMatcher implements Matcher
 //Public Methods
 	
 	@Override
-	public Alignment extendAlignment(Alignment a, double thresh)
-	{
-		return extendBaseline(a,thresh);
-	}
-
-	@Override
 	public Alignment match(double thresh)
 	{
 		LexicalMatcher lm = new LexicalMatcher();
@@ -80,14 +74,14 @@ public class BackgroundKnowledgeMatcher implements Matcher
 		//Auxiliary variables
 		Alignment temp;
 		Double gain, refGain;
-		//First go through the listed ontologies
+		//First go through the listed sources
 		for(String s : sources)
 		{
-			//UMLS
-			if(s.equals("UMLS"))
+			//Lexicon files
+			if(s.endsWith(".lexicon"))
 			{
-				UMLSMatcher um = new UMLSMatcher();
-				temp = um.match(thresh);
+				MediatingMatcher mm = new MediatingMatcher(s);
+				temp = mm.match(thresh);
 				if(oneToOne)
 					gain = temp.gainOneToOne(tempBase);
 				else

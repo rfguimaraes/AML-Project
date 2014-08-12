@@ -46,7 +46,7 @@ import aml.AML.MappingRelation;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
-import aml.util.Table2Plus;
+import aml.util.Table2Map;
 
 public class Alignment implements Iterable<Mapping>
 {
@@ -56,9 +56,9 @@ public class Alignment implements Iterable<Mapping>
 	//Term mappings organized in list
 	private Vector<Mapping> maps;
 	//Term mappings organized by source class
-	private Table2Plus<Integer,Integer,Mapping> sourceMaps;
+	private Table2Map<Integer,Integer,Mapping> sourceMaps;
 	//Term mappings organized by target class
-	private Table2Plus<Integer,Integer,Mapping> targetMaps;
+	private Table2Map<Integer,Integer,Mapping> targetMaps;
 	
 //Constructors
 
@@ -68,8 +68,8 @@ public class Alignment implements Iterable<Mapping>
 	public Alignment()
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
-		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 	}
 
 	/**
@@ -79,8 +79,8 @@ public class Alignment implements Iterable<Mapping>
 	public Alignment(String file) throws Exception
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
-		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 		if(file.endsWith(".rdf"))
 			loadMappingsRDF(file);
 		else if(file.endsWith(".tsv"))
@@ -96,8 +96,8 @@ public class Alignment implements Iterable<Mapping>
 	public Alignment(Alignment a)
 	{
 		maps = new Vector<Mapping>(0,1);
-		sourceMaps = new Table2Plus<Integer,Integer,Mapping>();
-		targetMaps = new Table2Plus<Integer,Integer,Mapping>();
+		sourceMaps = new Table2Map<Integer,Integer,Mapping>();
+		targetMaps = new Table2Map<Integer,Integer,Mapping>();
 		addAll(a);
 	}
 	
@@ -299,6 +299,16 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
+ 	 * @param classId: the index of the class to check in the alignment 
+	 * @return whether the Alignment contains a Mapping with that class
+	 * (either as a source or as a target class)
+	 */
+	public boolean containsClass(int classId)
+	{
+		return containsSource(classId) || containsTarget(classId);
+	}
+	
+	/**
 	 * @param sourceId: the index of the source class to check in the alignment
  	 * @param targetId: the index of the target class to check in the alignment 
 	 * @return whether the Alignment contains a Mapping for sourceId or for targetId
@@ -428,17 +438,43 @@ public class Alignment implements Iterable<Mapping>
 	}
 	
 	/**
-	 * @param a: the reference Alignment to evaluate this Alignment 
-	 * @return the number of Mappings in this Alignment that are correct
-	 * (i.e., found in the reference Alignment)
+	 * @param ref: the reference Alignment to evaluate this Alignment
+	 * @param forGUI: whether the evaluation is for display in the GUI
+	 * or for output to the console
+	 * @return the evaluation of this Alignment
 	 */
-	public int evaluate(Alignment a)
+	public String evaluate(Alignment ref, boolean forGUI)
 	{
+		int found = size();		
 		int correct = 0;
-		for(Mapping m : a.maps)
-			if(this.containsMapping(m))
-				correct++;
-		return correct;
+		int total = 0;
+		int conflict = 0;
+		for(Mapping m : maps)
+		{
+			if(ref.containsMapping(m))
+			{
+				if(ref.getRelationship(m.getSourceId(),m.getTargetId()).equals(MappingRelation.UNKNOWN))
+					conflict++;
+				else
+					correct++;
+			}
+		}
+		for(Mapping m : ref)
+			if(!m.getRelationship().equals(MappingRelation.UNKNOWN))
+				total++;
+		
+		double precision = 1.0*correct/(found-conflict);
+		String prc = Math.round(precision*1000)/10.0 + "%";
+		double recall = 1.0*correct/total;
+		String rec = Math.round(recall*1000)/10.0 + "%";
+		double fmeasure = 2*precision*recall/(precision+recall);
+		String fms = Math.round(fmeasure*1000)/10.0 + "%";
+		
+		if(forGUI)
+			return "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
+		else
+			return "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
+					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
 	}
 
 	/**
@@ -597,8 +633,26 @@ public class Alignment implements Iterable<Mapping>
 	 */
 	public int getIndex(int sourceId, int targetId)
 	{
-		Mapping m = new Mapping(sourceId,targetId,1.0);
-		return maps.indexOf(m);
+		if(sourceMaps.contains(sourceId, targetId))
+			return maps.indexOf(sourceMaps.get(sourceId, targetId));
+		else
+			return -1;
+	}
+	
+	/**
+	 * @param id1: the index of the first class
+	 * @param id2: the index of the second class
+	 * @return the index of the Mapping between the given classes in
+	 * the list of Mappings (in any order), or -1 if the Mapping doesn't exist
+	 */
+	public int getIndexBidirectional(int id1, int id2)
+	{
+		if(sourceMaps.contains(id1, id2))
+			return maps.indexOf(sourceMaps.get(id1, id2));
+		else if(targetMaps.contains(id1, id2))
+			return maps.indexOf(targetMaps.get(id1, id2));
+		else
+			return -1;
 	}
 	
 	/**

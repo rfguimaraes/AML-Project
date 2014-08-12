@@ -18,7 +18,7 @@
 * only for Alignment extension whenever running time is an issue.             *
 *                                                                             *
 * @authors Daniel Faria, Cosmin Stroe                                         *
-* @date 23-06-2014                                                            *
+* @date 31-07-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.match;
@@ -35,7 +35,7 @@ import aml.ontology.RelationshipMap;
 import aml.util.ISub;
 import aml.util.StringParser;
 
-public class ParametricStringMatcher implements Matcher
+public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher, Rematcher
 {
 
 //Attributes
@@ -106,7 +106,7 @@ public class ParametricStringMatcher implements Matcher
 		{
 			for(Integer j : targets)
 			{
-				double sim = mapTwoTerms(i,j);
+				double sim = mapTwoClasses(i,j);
 				if(sim >= thresh)
 					a.add(i,j,sim);
 			}
@@ -114,16 +114,16 @@ public class ParametricStringMatcher implements Matcher
 		return a;
 	}
 	
-	public Alignment rematch(Alignment a, double thresh)
+	@Override
+	public Alignment rematch(Alignment a)
 	{
 		Alignment maps = new Alignment();
 		for(Mapping m : a)
 		{
-			double sim = mapTwoTerms(m.getSourceId(),m.getTargetId());
-			if(sim >= thresh)
-				maps.add(m.getSourceId(),m.getTargetId(),sim);
+			double sim = mapTwoClasses(m.getSourceId(),m.getTargetId());
+			maps.add(m.getSourceId(),m.getTargetId(),sim);
 		}
-		return a;
+		return maps;
 	}
 	
 //Private Methods
@@ -131,14 +131,14 @@ public class ParametricStringMatcher implements Matcher
 	private Alignment extendChildrenAndParents(Alignment a, double thresh)
 	{
 		AML aml = AML.getInstance();
-		RelationshipMap rMap = aml.getRelationshipMap();
+		RelationshipMap rels = aml.getRelationshipMap();
 		
 		Alignment maps = new Alignment();
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
-			Set<Integer> sourceChildren = rMap.getChildren(input.getSourceId());
-			Set<Integer> targetChildren = rMap.getChildren(input.getTargetId());
+			Set<Integer> sourceChildren = rels.getChildren(input.getSourceId());
+			Set<Integer> targetChildren = rels.getChildren(input.getTargetId());
 			for(Integer s : sourceChildren)
 			{
 				if(a.containsSource(s))
@@ -147,13 +147,13 @@ public class ParametricStringMatcher implements Matcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
+					double sim = mapTwoClasses(s, t);
 					if(sim >= thresh)
 						maps.add(s,t,sim);
 				}
 			}
-			Set<Integer> sourceParents = rMap.getParents(input.getSourceId());
-			Set<Integer> targetParents = rMap.getParents(input.getTargetId());
+			Set<Integer> sourceParents = rels.getParents(input.getSourceId());
+			Set<Integer> targetParents = rels.getParents(input.getTargetId());
 			for(Integer s : sourceParents)
 			{
 				if(a.containsSource(s))
@@ -162,7 +162,7 @@ public class ParametricStringMatcher implements Matcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
+					double sim = mapTwoClasses(s, t);
 					if(sim >= thresh)
 						maps.add(s,t,sim);
 				}
@@ -175,13 +175,13 @@ public class ParametricStringMatcher implements Matcher
 	private Alignment extendSiblings(Alignment a, double thresh)
 	{		
 		AML aml = AML.getInstance();
-		RelationshipMap rMap = aml.getRelationshipMap();
+		RelationshipMap rels = aml.getRelationshipMap();
 		Alignment maps = new Alignment();
 		for(int i = 0; i < a.size(); i++)
 		{
 			Mapping input = a.get(i);
-			Set<Integer> sourceSiblings = rMap.getAllSiblings(input.getSourceId());
-			Set<Integer> targetSiblings = rMap.getAllSiblings(input.getTargetId());
+			Set<Integer> sourceSiblings = rels.getAllSiblings(input.getSourceId());
+			Set<Integer> targetSiblings = rels.getAllSiblings(input.getTargetId());
 			if(sourceSiblings.size() > 200 || targetSiblings.size() > 200)
 				continue;
 			for(Integer s : sourceSiblings)
@@ -192,7 +192,7 @@ public class ParametricStringMatcher implements Matcher
 				{
 					if(a.containsTarget(t))
 						continue;
-					double sim = mapTwoTerms(s, t);
+					double sim = mapTwoClasses(s, t);
 					if(sim >= thresh)
 						maps.add(s,t,sim);
 				}
@@ -201,11 +201,11 @@ public class ParametricStringMatcher implements Matcher
 		return maps;
 	}
 	
-	//Computes the maximum String similarity between two terms by doing a
+	//Computes the maximum String similarity between two Classes by doing a
 	//pairwise comparison of all their names
-	private double mapTwoTerms(int sId, int tId)
+	private double mapTwoClasses(int sId, int tId)
 	{
-		//TODO: mapTwoTerms with language constrains
+		//TODO: mapTwoClasses with language constrains
 		double maxSim = 0.0;
 		double sim, weight;
 		//Get the source and target names
