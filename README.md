@@ -10,6 +10,7 @@ at IME - USP.
 Copyright 2014-2014 Ricardo F. Guimarães
 
 What follows is a copy from the original project's README:
+```
 
   ______________________________________________________________
  /                                                              \
@@ -27,3 +28,4 @@ What follows is a copy from the original project's README:
  |  or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY,  |
  |            or FITNESS FOR A PARTICULAR PURPOSE.              |
  \______________________________________________________________/
+```
