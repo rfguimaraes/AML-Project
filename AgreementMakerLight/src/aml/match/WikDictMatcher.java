@@ -12,9 +12,9 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * Matches Ontologies by finding literal full-name matches between their       *
+ * Matches ontologies by finding literal full-name matches between their       *
  * Lexicons after extension with the data obtained from the English Wiktionary,*
- * using wik2dict.                                                             *
+ * using wikt2dict.                                                            *
  * @author Ricardo F. Guimarães                                                *
  * @date 06-08-2014                                                            *
  * @version 0.7                                                                *

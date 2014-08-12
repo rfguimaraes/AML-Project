@@ -1,5 +1,5 @@
-/******************************************************************************
- * Copyright 2013-2014 LASIGE                                                  *
+/*******************************************************************************
+ * Copyright 2014-2014 Ricardo F. Guimarães                                    *
  *                                                                             *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
  * not use this file except in compliance with the License. You may obtain a   *
@@ -13,7 +13,7 @@
  *                                                                             *
  *******************************************************************************
  * Dictionary of translations obtain from the English Wiktionary, using        *
- * wik2dict                                                                    *
+ * wikt2dict                                                                   *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
  * @date 30-07-2014                                                            *

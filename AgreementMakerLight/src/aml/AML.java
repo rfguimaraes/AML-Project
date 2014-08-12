@@ -31,7 +31,7 @@ import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
 
-import aml.filter.RepairerOld;
+import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.match.AMLMatcher;
 import aml.match.Alignment;
@@ -231,6 +231,20 @@ public class AML
     	SizeCategory(){}    	
     }
     
+	/**
+	 * Lists the Word Matching strategies
+	 */
+    public enum WordMatchStrategy
+    {
+    	BY_CLASS,
+    	BY_NAME,
+    	AVERAGE,
+    	MAXIMUM,
+    	MINIMUM;
+    	
+    	WordMatchStrategy(){}    	
+    }
+    
 //Constructors
 	
 	//It's private so that no other instances can be created 
@@ -349,7 +363,9 @@ public class AML
 	 */
 	public double getLexicalWeight(String type)
 	{
-		return typeWeights.get(type);
+		if(typeWeights.containsKey(type))
+			return typeWeights.get(type);
+		return 0.8;
 	}
 	
     public MatchingAlgorithm getMatcher()
@@ -628,8 +644,8 @@ public class AML
     
     public void repair()
     {
-		RepairerOld r = new RepairerOld();
-		a = r.repair(a);
+		CardinalityRepairer r = new CardinalityRepairer(a);
+		a = r.repair();
     	if(a.size() >= 1)
     		currentMapping = 0;
     	else

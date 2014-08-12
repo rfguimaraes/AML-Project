@@ -24,7 +24,7 @@ package aml.match;
 import aml.AML;
 import aml.AML.SelectionType;
 import aml.filter.CardinalitySelector;
-import aml.filter.RepairerOld;
+import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
 import aml.ontology.Ontology;
 import aml.ontology.URIMap;
@@ -47,7 +47,8 @@ public class OAEI2013Matcher
 	private double threshold;
 	//The oracle for interactive matching
 	private Oracle oracle;
-	//The path to the Uberon ontology
+	//The path to UMLS and Uberon
+	private final String UMLS = "store/knowledge/UMLS.lexicon";
 	private final String UBERON_ONT = "store/knowledge/uberon.owl";
 	private final String UBERON_REF = "store/knowledge/uberon.xrefs";
 	//Links to the ontologies and alignments
@@ -151,7 +152,7 @@ public class OAEI2013Matcher
 		else if(Math.max(sSize, tSize) > 500)
 		{
 			size = 2;
-			threshold = 0.59;//TODO: Reevaluate this
+			threshold = 0.59;
 		}
 		else
 		{
@@ -180,7 +181,7 @@ public class OAEI2013Matcher
 				//For large ontologies, we start with UMLS, since it is more likely to have suitable coverage
 				if(!ignoreUMLS)
 				{
-					UMLSMatcher um = new UMLSMatcher();
+					MediatingMatcher um = new MediatingMatcher(UMLS);
 					umls = um.match(BASE_THRESH);
 					double umlsGain = umls.gainOneToOne(base);
 					//If UMLS has high gain we use the UMLS matcher exclusively
@@ -226,7 +227,7 @@ public class OAEI2013Matcher
 				//Otherwise, we proceed to UMLS
 				if(!ignoreUMLS)
 				{
-					UMLSMatcher um = new UMLSMatcher();
+					MediatingMatcher um = new MediatingMatcher(UMLS);
 					umls = um.match(BASE_THRESH);
 					double umlsGain = umls.gainOneToOne(base);
 					double umlsCoverage = Math.min(umls.sourceCoverage(),umls.targetCoverage());
@@ -346,8 +347,8 @@ public class OAEI2013Matcher
 	private long repair()
 	{
 		long startTime = System.currentTimeMillis()/1000;
-		RepairerOld rep = new RepairerOld();
-		a = rep.repair(a);
+		CardinalityRepairer rep = new CardinalityRepairer(a);
+		a = rep.repair();
 		return System.currentTimeMillis()/1000 - startTime;
 	}
 	
