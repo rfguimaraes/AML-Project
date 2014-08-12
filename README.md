@@ -4,12 +4,12 @@ Extra Matchers for the AML (AgreementMakerLight)
 
 This is a direct fork from "AML (AgreementMakerLight) Eclipse
 Project" with academic purposes as concluding project
-for obtaining bachelor's degree in Computer Science
+to obtain bachelor's degree in Computer Science
 at IME - USP.
 
 Copyright 2014-2014 Ricardo F. Guimarães
 
-What follows is a copy from the original project's README:
+What follows is a copy of the original project's README:
 ```
 
   ______________________________________________________________
