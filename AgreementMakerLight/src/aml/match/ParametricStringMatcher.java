@@ -23,13 +23,14 @@
 ******************************************************************************/
 package aml.match;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
-
 import aml.AML;
+import aml.AML.LanguageSetting;
 import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
 import aml.util.ISub;
@@ -43,6 +44,8 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	//Links to the source and target Lexicons
 	private Lexicon sLex;
 	private Lexicon tLex;
+	private LanguageSetting lSet;
+	private HashSet<String> languages;
 	private String measure = "ISub";
 	private final double CORRECTION = 0.8;
 
@@ -57,6 +60,12 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 		AML aml = AML.getInstance();
 		sLex = aml.getSource().getLexicon();
 		tLex = aml.getTarget().getLexicon();
+		lSet = AML.getInstance().getLanguageSetting();
+		languages = new HashSet<String>();
+		if(lSet.equals(LanguageSetting.MULTI))
+			for(String l : sLex.getLanguages())
+				if(tLex.getLanguages().contains(l))
+					languages.add(l);
 	}
 
 	/**
@@ -70,10 +79,8 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	 */
 	public ParametricStringMatcher(String m)
 	{
+		this();
 		measure = m;
-		AML aml = AML.getInstance();
-		sLex = aml.getSource().getLexicon();
-		tLex = aml.getTarget().getLexicon();
 	}
 
 //Public Methods
@@ -205,28 +212,57 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	//pairwise comparison of all their names
 	private double mapTwoClasses(int sId, int tId)
 	{
-		//TODO: mapTwoClasses with language constrains
 		double maxSim = 0.0;
 		double sim, weight;
-		//Get the source and target names
-		Set<String> sourceNames = sLex.getNames(sId);
-		Set<String> targetNames = tLex.getNames(tId);
-		if(sourceNames == null || targetNames == null)
-			return maxSim;
 		
-		for(String s : sourceNames)
+		if(lSet.equals(LanguageSetting.MULTI))
 		{
-			if(StringParser.isFormula(s))
-				continue;
-			weight = sLex.getCorrectedWeight(s, sId);
-			for(String t : targetNames)
+			for(String l : languages)
 			{
-				if(StringParser.isFormula(t))
+				Set<String> sourceNames = sLex.getNamesWithLanguage(sId,l);
+				Set<String> targetNames = tLex.getNamesWithLanguage(tId,l);
+				if(sourceNames == null || targetNames == null)
 					continue;
-				sim = weight * tLex.getCorrectedWeight(t, tId);
-				sim *= stringSimilarity(s,t);
-				if(sim > maxSim)
-					maxSim = sim;
+			
+				for(String s : sourceNames)
+				{
+					if(StringParser.isFormula(s))
+						continue;
+					weight = sLex.getCorrectedWeight(s, sId, l);
+					
+					for(String t : targetNames)
+					{
+						if(StringParser.isFormula(t))
+							continue;
+						sim = weight * tLex.getCorrectedWeight(t, tId, l);
+						sim *= stringSimilarity(s,t);
+						if(sim > maxSim)
+							maxSim = sim;
+					}
+				}
+			}
+		}
+		else
+		{
+			Set<String> sourceNames = sLex.getNames(sId);
+			Set<String> targetNames = tLex.getNames(tId);
+			if(sourceNames == null || targetNames == null)
+				return maxSim;
+			for(String s : sourceNames)
+			{
+				if(StringParser.isFormula(s))
+					continue;
+				weight = sLex.getCorrectedWeight(s, sId);
+				
+				for(String t : targetNames)
+				{
+					if(StringParser.isFormula(t))
+						continue;
+					sim = weight * tLex.getCorrectedWeight(t, tId);
+					sim *= stringSimilarity(s,t);
+					if(sim > maxSim)
+						maxSim = sim;
+				}
 			}
 		}
 		return maxSim;

@@ -78,7 +78,6 @@ public class AML
 	private String evaluation;
 	//Lexical types and weights
 	private final String[] LEXICAL_TYPES = {"localName", "label", "exactSynonym", "otherSynonym"};
-	private final String[] NON_LATIN_LANGUAGES = {"cn", "cz", "jp", "kr", "ru"};
 	private HashMap<String,Double> typeWeights;
 	//Background knowledge path and sources
 	private final String BK_PATH = "store/knowledge/";
@@ -268,9 +267,6 @@ public class AML
 		//List the background knowledge sources
 		bkSources = listBKSources();
         selectedSources = new Vector<String>(0,1);
-        //Initialize the URIMap and RelationshipMap
-		uris = new URIMap();
-		rels = new RelationshipMap();
 	}
 
 //Public Methods
@@ -469,22 +465,6 @@ public class AML
     	return ignoreUMLS;
     }
     
-    public boolean isNonLatin(String lang)
-    {
-    	for(String s : NON_LATIN_LANGUAGES)
-    		if(lang.equals(s))
-    			return true;
-    	return false;
-    }
-    
-    public boolean isLarge()
-    {
-    	for(String s : NON_LATIN_LANGUAGES)
-    		if(lang.equals(s))
-    			return true;
-    	return false;
-    }
-    
     public void match()
     {
     	if(matcher.equals(MatchingAlgorithm.AML))
@@ -501,8 +481,8 @@ public class AML
     	{
     		LexicalMatcher m = new LexicalMatcher();
     		a = m.match(threshold);
-    		RankedSelector s = new RankedSelector(a, sType);
-    		a = s.select(threshold);
+    		RankedSelector s = new RankedSelector(sType);
+    		a = s.select(a, threshold);
     	}
         else if (matcher.equals(MatchingAlgorithm.EXTRAS4AML))
         {
@@ -558,10 +538,12 @@ public class AML
 	 * Open a pair of local ontologies
 	 * @param src: the path to the source ontology
 	 * @param tgt: the path to the target ontology
-	 * @throws OWLOntologyCreationException 
 	 */
 	public void openOntologies(String src, String tgt)
 	{
+        //Initialize the URIMap and RelationshipMap
+		uris = new URIMap();
+		rels = new RelationshipMap();
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
@@ -605,10 +587,12 @@ public class AML
 	 * Open a pair of ontologies from the web
 	 * @param src: the URI of the source ontology
 	 * @param tgt: the URI of the target ontology
-	 * @throws Exception 
 	 */
-	public void openOntologies(URI src, URI tgt) throws Exception
+	public void openOntologies(URI src, URI tgt)
 	{
+        //Initialize the URIMap and RelationshipMap
+		uris = new URIMap();
+		rels = new RelationshipMap();
 		if(useReasoner)
 			PropertyConfigurator.configure("log4j.properties");
 		long time = System.currentTimeMillis()/1000;
@@ -665,8 +649,8 @@ public class AML
     
     public void repair()
     {
-		CardinalityRepairer r = new CardinalityRepairer(a);
-		a = r.repair();
+		CardinalityRepairer r = new CardinalityRepairer();
+		a = r.repair(a);
     	if(a.size() >= 1)
     		currentMapping = 0;
     	else
