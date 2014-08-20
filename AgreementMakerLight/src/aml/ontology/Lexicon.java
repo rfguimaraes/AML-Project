@@ -154,9 +154,8 @@ public class Lexicon
 		String s, lang;
 		Provenance p;
 
-		//If the name is in a language that doesn't use a Latin character set
-		//we parse it as a formula (i.e., replace only '_' with ' ')
-		if(AML.getInstance().isNonLatin(language))
+		//If the name is not in english we parse it as a formula
+		if(!language.equals("en"))
 		{
 			s = StringParser.normalizeFormula(name);
 			lang = language;
@@ -492,9 +491,17 @@ public class Lexicon
 	{
 		if(!names.contains(name, classId))
 			return 0.0;
-		Provenance p = names.get(name, classId).get(0);
-		double correction = nameCount(classId,p.getType())/100.0;
-		return p.getWeight() - correction;
+		double weight = 0.0;
+		double correction = 0.0;
+		for(Provenance p : names.get(name, classId))
+		{
+			if(p.getWeight() > weight)
+			{
+				weight = p.getWeight();
+				correction = nameCount(classId,p.getType())/100.0;
+			}
+		}
+		return weight - correction;
 	}
 	
 	/**

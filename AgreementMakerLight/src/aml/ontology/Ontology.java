@@ -15,7 +15,7 @@
 * An Ontology object, loaded using the OWL API.                               *
 *                                                                             *
 * @author Daniel Faria                                                        *
-* @date 12-08-2014                                                            *
+* @date 13-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml.ontology;
@@ -85,6 +85,8 @@ public class Ontology
 	private WordLexicon wLex;
 	//Its map of cross-references
 	private ReferenceMap refs;
+	//Its set of obsolete classes
+	private HashSet<Integer> obsolete;
 	
 	//Global variables data structures
 	private AML aml;
@@ -103,7 +105,6 @@ public class Ontology
 	 * Constructs an Ontology from file 
 	 * @param path: the path to the input Ontology file
 	 * @param isInput: whether the ontology is an input ontology or an external ontology
-	 * @throws OWLOntologyCreationException 
 	 */
 	public Ontology(String path, boolean isInput)
 	{
@@ -136,7 +137,6 @@ public class Ontology
 	 * @param uri: the URI of the input Ontology
 	 * @param isInput: whether the ontology is an input ontology or
 	 * an external ontology
-	 * @throws OWLOntologyCreationException 
 	 */
 	public Ontology(URI uri, boolean isInput)
 	{
@@ -315,6 +315,15 @@ public class Ontology
 	
 	/**
 	 * @param index: the index of the URI in the ontology
+	 * @return whether the index corresponds to an obsolete class
+	 */
+	public boolean isObsoleteClass(int index)
+	{
+		return obsolete.contains(index);
+	}
+	
+	/**
+	 * @param index: the index of the URI in the ontology
 	 * @return whether the index corresponds to a property
 	 */
 	public boolean isProperty(int index)
@@ -346,6 +355,7 @@ public class Ontology
 		useReasoner = aml.useReasoner();
 		uris = aml.getURIMap();
 		rm = aml.getRelationshipMap();
+		obsolete = new HashSet<Integer>();
 		
 		//Get the URI of the ontology
 		uri = o.getOntologyID().getOntologyIRI().toString();
@@ -437,6 +447,18 @@ public class Ontology
 					if(!xRef.startsWith("http"))
 						refs.add(id,xRef.replace(':','_'));
             	}
+            	//Deprecated classes are flagged as obsolete
+            	else if(propUri.endsWith("deprecated") &&
+            			annotation.getValue() instanceof OWLLiteral)
+            	{
+            		OWLLiteral val = (OWLLiteral) annotation.getValue();
+            		if(val.isBoolean())
+            		{
+            			boolean deprecated = val.parseBoolean();
+            			if(deprecated)
+            				obsolete.add(id);
+            		}
+            	}
 	        }
 		}
 	}
@@ -457,19 +479,23 @@ public class Ontology
 			//Add it to the global list of URIs
 			int id = uris.addURI(propUri);
 			String name = "";
+			String lang = "";
 			for(OWLAnnotation a : ap.getAnnotations(o,label))
             {
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
                		name = val.getLiteral();
+               		lang = val.getLang();
                		break;
                	}
             }
 			if(name.equals(""))
 				name = getLocalName(propUri);
-			//Initialize the property
-			Property prop = new Property(id,name,"annotation");
+    		if(lang.equals(""))
+    			lang = "en";
+    		//Initialize the property
+			Property prop = new Property(id,name,lang,"annotation");
 			properties.put(id,prop);
     	}
 		//Get the Data Properties
@@ -482,19 +508,23 @@ public class Ontology
  			//Add it to the global list of URIs
 			int id = uris.addURI(propUri);
 			String name = "";
+			String lang = "";
 			for(OWLAnnotation a : dp.getAnnotations(o,label))
             {
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
                		name = val.getLiteral();
+               		lang = val.getLang();
                		break;
                	}
             }
 			if(name.equals(""))
 				name = getLocalName(propUri);
+    		if(lang.equals(""))
+    			lang = "en";
 			//Initialize the property
-			Property prop = new Property(id,name,"datatype",dp.isFunctional(o));
+			Property prop = new Property(id,name,lang,"datatype",dp.isFunctional(o));
 			//Get its domain
 			Set<OWLClassExpression> domains = dp.getDomains(o);
 			for(OWLClassExpression ce : domains)
@@ -528,19 +558,23 @@ public class Ontology
 			if(op.isTransitive(o))
 				aml.getRelationshipMap().setTransitive(id);
 			String name = "";
+			String lang = "";
 			for(OWLAnnotation a : op.getAnnotations(o,label))
             {
                	if(a.getValue() instanceof OWLLiteral)
                	{
                		OWLLiteral val = (OWLLiteral) a.getValue();
                		name = val.getLiteral();
+               		lang = val.getLang();
                		break;
                	}
             }
 			if(name.equals(""))
 				name = getLocalName(propUri);
+    		if(lang.equals(""))
+    			lang = "en";
 			//Initialize the property
-			Property prop = new Property(id,name,"object",op.isFunctional(o));
+			Property prop = new Property(id,name,lang,"object",op.isFunctional(o));
 			//Get its domain
 			Set<OWLClassExpression> domains = op.getDomains(o);
 			for(OWLClassExpression ce : domains)
@@ -613,7 +647,14 @@ public class Ontology
 				{
 					parent = uris.getIndex(par.getIRI().toString());
 					if(parent > -1)
+					{
 						rm.addDirectSubclass(child, parent);
+						String name = indexName.get(parent);
+						if(name.contains("Obsolete") || name.contains("obsolete") ||
+								name.contains("Retired") || name.contains ("retired") ||
+								name.contains("Deprecated") || name.contains("deprecated"))
+							obsolete.add(child);
+					}
 				}
 				//Get its equivalent classes using the reasoner
 				Node<OWLClass> equivs = reasoner.getEquivalentClasses(c);
@@ -908,6 +949,11 @@ public class Ontology
 					rm.addDirectSubclass(parent, child);
 				else
 					rm.addDirectSubclass(child, parent);
+				String name = indexName.get(parent);
+				if(name.contains("Obsolete") || name.contains("obsolete") ||
+						name.contains("Retired") || name.contains ("retired") ||
+						name.contains("Deprecated") || name.contains("deprecated"))
+					obsolete.add(child);
 			}
 			else
 				rm.addEquivalentClass(child, parent);
