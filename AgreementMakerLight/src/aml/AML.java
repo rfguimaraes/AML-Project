@@ -1,4 +1,19 @@
 /******************************************************************************
+ * Copyright 2014-2014 Ricardo F. Guimarães                                    *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ * This file incorporates work covered by the following copyright and          *
+ * permission notice:                                                          *
+/******************************************************************************
 * Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
@@ -17,8 +32,8 @@
 * instance of this class in the whole application. All classes can access it  *
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
-* @author Daniel Faria                                                        *
-* @date 17-07-2014                                                            *
+* @author Daniel Faria & Ricardo F. Guimarães                                 *
+* @date 18-08-2014                                                            *
 * @version 2.0                                                                *
 ******************************************************************************/
 package aml;
@@ -29,15 +44,11 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Vector;
 
+import aml.match.*;
 import org.apache.log4j.PropertyConfigurator;
 
 import aml.filter.CardinalityRepairer;
 import aml.filter.RankedSelector;
-import aml.match.AMLMatcher;
-import aml.match.Alignment;
-import aml.match.LexicalMatcher;
-import aml.match.Mapping;
-import aml.match.OAEI2013Matcher;
 import aml.ontology.Ontology;
 import aml.ontology.RelationshipMap;
 import aml.ontology.URIMap;
@@ -165,7 +176,8 @@ public class AML
 	{
 	    AML ("AML Matcher"),
 	    OAEI ("OAEI2013 Matcher"),
-	    LEXICAL ("Lexical Matcher");
+	    LEXICAL ("Lexical Matcher"),
+        EXTRAS4AML("EXTRAS4AML Matcher");
 	    
 	    String label;
 	    
@@ -492,6 +504,15 @@ public class AML
     		RankedSelector s = new RankedSelector(a, sType);
     		a = s.select(threshold);
     	}
+        else if (matcher.equals(MatchingAlgorithm.EXTRAS4AML))
+        {
+            WikDictMatcher wiktmatch = new WikDictMatcher();
+            wiktmatch.extendLexicons(threshold);
+            LexicalMatcher m = new LexicalMatcher();
+            a = m.match(threshold);
+            //WikDictMatcher wiktmatch = new WikDictMatcher();
+            //wiktmatch.extendAlignment(a, threshold);
+        }
     	if(a.size() >= 1)
     		currentMapping = 0;
     	else
