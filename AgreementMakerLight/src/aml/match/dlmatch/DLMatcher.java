@@ -17,28 +17,49 @@
  * http://doi.ieeecomputersociety.org/10.1109/IITA.2007.95                     *
  *                                                                             *
  * @author Ricardo F. Guimarães                                                *
- * @date 22-08-2014                                                            *
- * @version 0.1                                                                *
+ * @date 23-08-2014                                                            *
+ * @version 0.12                                                               *
  ******************************************************************************/
 
 package aml.match.dlmatch;
 
 import aml.AML;
 import aml.match.Alignment;
+import aml.match.Mapping;
 import aml.match.SecondaryMatcher;
+import aml.ontology.RelationshipMap;
+
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by rickfg on 8/22/14.
  */
 public class DLMatcher implements SecondaryMatcher {
 
-    DLMatcher() {
-        AML aml = AML.getInstance();
-        aml.getURIMap().
+    private AML aml;
+    private RelationshipMap relationshipMap;
+
+    public DLMatcher() {
+        aml = AML.getInstance();
+        relationshipMap = aml.getRelationshipMap();
     }
+
     @Override
     public Alignment extendAlignment(Alignment a, double thresh) {
-        a.
-        return null;
+        Iterator<Mapping> it = a.iterator();
+
+        while (it.hasNext()) {
+            Mapping c = it.next();
+            Set<Integer> ancestors;
+            ancestors = relationshipMap.getAncestors(c.getSourceId(), 1);
+
+            for (Integer ancestor : ancestors) {
+                a.add(ancestor, c.getTargetId(), 0.5,
+                        AML.MappingRelation.SUPERCLASS);
+            }
+
+        }
+        return a;
     }
 }
