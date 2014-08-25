@@ -33,8 +33,8 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria & Ricardo F. Guimarães                                 *
-* @date 18-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 24-08-2014                                                            *
+* @version 2.1                                                                *
 ******************************************************************************/
 package aml;
 
@@ -45,6 +45,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import aml.match.*;
+import aml.match.dlmatch.DLMatcher;
 import org.apache.log4j.PropertyConfigurator;
 
 import aml.filter.CardinalityRepairer;
@@ -490,8 +491,8 @@ public class AML
             wiktmatch.extendLexicons(threshold);
             LexicalMatcher m = new LexicalMatcher();
             a = m.match(threshold);
-            //WikDictMatcher wiktmatch = new WikDictMatcher();
-            //wiktmatch.extendAlignment(a, threshold);
+            DLMatcher dlMatcher = new DLMatcher();
+            a = dlMatcher.extendAlignment(a, threshold);
         }
     	if(a.size() >= 1)
     		currentMapping = 0;

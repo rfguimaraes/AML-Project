@@ -17,8 +17,8 @@
  * http://doi.ieeecomputersociety.org/10.1109/IITA.2007.95                     *
  *                                                                             *
  * @author Ricardo F. Guimarães                                                *
- * @date 23-08-2014                                                            *
- * @version 0.12                                                               *
+ * @date 25-08-2014                                                            *
+ * @version 0.25                                                               *
  ******************************************************************************/
 
 package aml.match.dlmatch;
@@ -29,7 +29,9 @@ import aml.match.Mapping;
 import aml.match.SecondaryMatcher;
 import aml.ontology.RelationshipMap;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -47,19 +49,49 @@ public class DLMatcher implements SecondaryMatcher {
 
     @Override
     public Alignment extendAlignment(Alignment a, double thresh) {
+        Alignment b = new Alignment(a);
         Iterator<Mapping> it = a.iterator();
 
         while (it.hasNext()) {
             Mapping c = it.next();
-            Set<Integer> ancestors;
-            ancestors = relationshipMap.getAncestors(c.getSourceId(), 1);
+            Set<Integer> sourceIds, targetIds;
+            sourceIds = relationshipMap.getSiblings(c.getSourceId());
+            targetIds = relationshipMap.getSiblings(c.getTargetId());
+            Set<Integer> sourceParents, targetParents;
 
-            for (Integer ancestor : ancestors) {
-                a.add(ancestor, c.getTargetId(), 0.5,
-                        AML.MappingRelation.SUPERCLASS);
+            //If all siblings in source have targets who are siblings.
+            if (allSourceHaveTargets(a, sourceIds, targetIds)) {
+                sourceParents = relationshipMap.getParents(c.getSourceId());
+                targetParents = relationshipMap.getParents(c.getTargetId());
+
+                for (Integer sourceId : sourceParents) {
+                    for (Integer targetId : targetParents) {
+                        b.add(sourceId, targetId, thresh,
+                                AML.MappingRelation.SUPERCLASS);
+                    }
+                }
             }
-
         }
-        return a;
+        return b;
+    }
+
+    private boolean allSourceHaveTargets(Alignment a, Set<Integer> sourceIds,
+                                         Set<Integer> targetIds) {
+        for (Integer sourceId : sourceIds) {
+            if (!existsSourceMapping(a, sourceId, targetIds)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean existsSourceMapping(Alignment a, int sourceId,
+                                        Set<Integer> targetIds) {
+        for (Integer targetId : targetIds) {
+            if (a.containsMapping(sourceId, targetId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

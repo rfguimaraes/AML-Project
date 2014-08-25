@@ -16,28 +16,26 @@
  * wik2dict                                                                    *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 30-07-2014                                                            *
- * @version 0.41                                                               *
+ * @date 25-08-2014                                                            *
+ * @version 1.0                                                                *
  ******************************************************************************/
 
 package aml;
 
-import aml.match.WikDictMatcher;
-
 public class AMLExtrasTest {
     public static void main(String[] args) {
         //Path to input ontology files (edit manually)
-        String sourcePath = "/home/bcc/rickfg/Downloads/benchmarks/101/onto" +
+        String sourcePath = "store/oaei_tests/101/onto" +
                 ".rdf";
-        String targetPath = "/home/bcc/rickfg/Downloads/benchmarks/206/onto" +
+        String targetPath = "store/oaei_tests/302/onto" +
                 ".rdf";
         //Path to reference alignment (edit manually, or leave blank for no
         // evaluation)
         String referencePath =
-                "/home/bcc/rickfg/Downloads/benchmarks/206/refalign.rdf";
+                "store/oaei_tests/302/refalign.rdf";
         //Path to save output alignment (edit manually,
         // or leave blank for no evaluation)
-        String outputPath = "store/oaei_tests/myres2.rdf";
+        String outputPath = "store/oaei_tests/302/myres.rdf";
 
         AML aml = AML.getInstance();
         aml.openOntologies(sourcePath, targetPath);

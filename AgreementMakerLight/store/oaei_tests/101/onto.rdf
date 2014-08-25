@@ -10,8 +10,8 @@
 	  <!ENTITY ical 	"http://www.w3.org/2002/12/cal/ical#">]>
 
 <rdf:RDF
- xmlns="http://oaei.ontologymatching.org/tests/101/onto.rdf#"
- xml:base="http://oaei.ontologymatching.org/tests/101/onto.rdf#"
+ xmlns="http://oaei.ontologymatching.org/2011/benchmarks/101/onto.rdf#"
+ xml:base="http://oaei.ontologymatching.org/2011/benchmarks/101/onto.rdf#"
  xmlns:foaf	="&foaf;"
  xmlns:ical	="&ical;"
  xmlns:rdf	="&rdf;"
