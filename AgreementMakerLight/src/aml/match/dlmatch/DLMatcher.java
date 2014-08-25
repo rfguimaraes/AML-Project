@@ -18,7 +18,7 @@
  *                                                                             *
  * @author Ricardo F. Guimarães                                                *
  * @date 25-08-2014                                                            *
- * @version 0.25                                                               *
+ * @version 0.27                                                               *
  ******************************************************************************/
 
 package aml.match.dlmatch;
@@ -28,6 +28,7 @@ import aml.match.Alignment;
 import aml.match.Mapping;
 import aml.match.SecondaryMatcher;
 import aml.ontology.RelationshipMap;
+import aml.settings.MappingRelation;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -67,7 +68,7 @@ public class DLMatcher implements SecondaryMatcher {
                 for (Integer sourceId : sourceParents) {
                     for (Integer targetId : targetParents) {
                         b.add(sourceId, targetId, thresh,
-                                AML.MappingRelation.SUPERCLASS);
+                                MappingRelation.SUPERCLASS);
                     }
                 }
             }

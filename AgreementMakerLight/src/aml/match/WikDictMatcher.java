@@ -16,14 +16,15 @@
  * Lexicons after extension with the data obtained from the English Wiktionary,*
  * using wikt2dict.                                                            *
  * @author Ricardo F. Guimarães                                                *
- * @date 06-08-2014                                                            *
- * @version 0.7                                                                *
+ * @date 25-08-2014                                                            *
+ * @version 0.72                                                               *
  ******************************************************************************/
 
 package aml.match;
 
 import aml.AML;
 import aml.ontology.Lexicon;
+import aml.settings.LexicalType;
 import aml.util.Dictionary;
 import aml.util.DictionaryWord;
 import aml.util.ISub;
@@ -117,7 +118,7 @@ public class WikDictMatcher implements PrimaryMatcher, SecondaryMatcher,
                     continue;
                 for (DictionaryWord w : translations) {
                     extended.add(i, w.getWrittenForm(), w.getLangCode(),
-                            TYPE, SOURCE, weight);
+                            LexicalType.OTHER_SYNONYM, SOURCE, weight);
                 }
             }
         }

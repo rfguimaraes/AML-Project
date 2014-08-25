@@ -47,8 +47,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import aml.AML;
-import aml.AML.MatchingAlgorithm;
-import aml.AML.SelectionType;
+import aml.settings.MatchingAlgorithm;
+import aml.settings.SelectionType;
 
 public class MatchOntologies extends JDialog implements ActionListener, ItemListener, ListSelectionListener
 {

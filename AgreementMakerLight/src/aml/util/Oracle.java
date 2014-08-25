@@ -21,9 +21,9 @@
 package aml.util;
 
 import aml.AML;
-import aml.AML.MappingRelation;
 import aml.match.Alignment;
 import aml.ontology.URIMap;
+import aml.settings.MappingRelation;
 
 
 public class Oracle

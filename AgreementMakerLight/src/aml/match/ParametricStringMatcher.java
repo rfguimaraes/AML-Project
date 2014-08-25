@@ -30,9 +30,9 @@ import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
 import aml.AML;
-import aml.AML.LanguageSetting;
 import aml.ontology.Lexicon;
 import aml.ontology.RelationshipMap;
+import aml.settings.LanguageSetting;
 import aml.util.ISub;
 import aml.util.StringParser;
 
@@ -47,7 +47,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	private LanguageSetting lSet;
 	private HashSet<String> languages;
 	private String measure = "ISub";
-	private final double CORRECTION = 0.8;
+	private final double CORRECTION = 0.80;
 
 //Constructors
 	

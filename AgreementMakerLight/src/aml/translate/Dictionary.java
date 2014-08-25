@@ -34,9 +34,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 
+
+
+import aml.AML;
 import aml.ontology.Lexicon;
 import aml.ontology.Ontology;
 import aml.ontology.Property;
+import aml.settings.LexicalType;
 
 public class Dictionary
 {
@@ -55,7 +59,7 @@ public class Dictionary
 	//The translator
 	private Translator translator;
 	//The attributes for Lexicon extension
-	private final String TYPE = "translation";
+	private final LexicalType TYPE = LexicalType.EXTERNAL_MATCH;
 	private final String SOURCE = "ms-translator";
 	private final double CONFIDENCE = 0.95;
 	//The control variables
@@ -141,10 +145,14 @@ public class Dictionary
 			//If we have a translation, extend the Lexicon with it
 			if(!trans.equals(""))
 				for(Integer i : l.getClassesWithLanguage(n,sourceLang))
-					l.add(i, trans, TYPE, targetLang, SOURCE, l.getWeight(n, i)*CONFIDENCE);
+					l.add(i, trans, targetLang, TYPE, SOURCE, l.getWeight(n, i)*CONFIDENCE);
 		}
-		try	{ outStream.close(); }
-		catch(IOException e) {/*Do nothing*/}
+		if(outStream != null)
+		{
+			try	{ outStream.close(); }
+			catch(IOException e) {/*Do nothing*/}
+		}
+		AML.getInstance().setLanguageSetting();
 	}
 	
 	/**
@@ -201,8 +209,11 @@ public class Dictionary
 			if(!trans.equals(""))
 				p.setTranslation(trans);
 		}
-		try	{ outStream.close(); }
-		catch(IOException e) {/*Do nothing*/}
+		if(outStream != null)
+		{
+			try	{ outStream.close(); }
+			catch(IOException e) {/*Do nothing*/}
+		}
 	}
 	
 //Private methods
@@ -230,6 +241,7 @@ public class Dictionary
 				dictionary.put(words[0], words[1]);
 			}
 			haveDictionary = true;
+			inStream.close();
 		}
 		//This will happen if the dictionary file was not created yet,
 		//in which case we'll be in translator mode only

@@ -12,15 +12,16 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * Dictionary of translations obtain from the English Wiktionary, using        *
- * wik2dict                                                                    *
+ * Test class for the Extras4AML matchers.                                     *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
  * @date 25-08-2014                                                            *
- * @version 1.0                                                                *
+ * @version 1.02                                                               *
  ******************************************************************************/
 
 package aml;
+
+import aml.settings.MatchingAlgorithm;
 
 public class AMLExtrasTest {
     public static void main(String[] args) {
@@ -41,7 +42,7 @@ public class AMLExtrasTest {
         aml.openOntologies(sourcePath, targetPath);
 
         //Set the matching algorithm
-        aml.setMatcher(AML.MatchingAlgorithm.EXTRAS4AML);
+        aml.setMatcher(MatchingAlgorithm.EXTRAS4AML);
 
         aml.match();
         try {

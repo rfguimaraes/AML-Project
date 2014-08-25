@@ -31,7 +31,7 @@ package aml;
 
 import java.io.File;
 
-import aml.AML.MatchingAlgorithm;
+import aml.settings.MatchingAlgorithm;
 
 public class AMLCommandLine
 {
