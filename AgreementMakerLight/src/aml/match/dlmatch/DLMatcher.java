@@ -15,10 +15,10 @@
  * Matches ontologies using a reasoner to find semantic correspondences        *
  * between entities. Largely based in the algorithms presented in:             *
  * http://doi.ieeecomputersociety.org/10.1109/IITA.2007.95                     *
- *                                                                             *
+ * Actually using the RelationshipMap to produce the same effect.              *
  * @author Ricardo F. Guimarães                                                *
- * @date 25-08-2014                                                            *
- * @version 0.27                                                               *
+ * @date 26-08-2014                                                            *
+ * @version 0.4                                                                *
  ******************************************************************************/
 
 package aml.match.dlmatch;
@@ -30,9 +30,7 @@ import aml.match.SecondaryMatcher;
 import aml.ontology.RelationshipMap;
 import aml.settings.MappingRelation;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -59,16 +57,37 @@ public class DLMatcher implements SecondaryMatcher {
             sourceIds = relationshipMap.getSiblings(c.getSourceId());
             targetIds = relationshipMap.getSiblings(c.getTargetId());
             Set<Integer> sourceParents, targetParents;
+            boolean sourceImpliesTarget, targetImpliesSource;
+            MappingRelation parentsRelation;
+
+            targetImpliesSource = allSourcesHaveTargets(a, sourceIds,
+                    targetIds);
+            sourceImpliesTarget = allTargetsHaveSources(a, sourceIds,
+                    targetIds);
 
             //If all siblings in source have targets who are siblings.
-            if (allSourceHaveTargets(a, sourceIds, targetIds)) {
+
+            if(targetImpliesSource && !sourceImpliesTarget) {
+                parentsRelation = MappingRelation.SUPERCLASS;
+            }
+            else if(targetImpliesSource && sourceImpliesTarget) {
+                parentsRelation = MappingRelation.EQUIVALENCE;
+            }
+            else if(!targetImpliesSource && sourceImpliesTarget) {
+                parentsRelation = MappingRelation.SUBCLASS;
+            }
+            else {
+                parentsRelation = MappingRelation.UNKNOWN;
+            }
+
+            if (parentsRelation != MappingRelation.UNKNOWN) {
                 sourceParents = relationshipMap.getParents(c.getSourceId());
                 targetParents = relationshipMap.getParents(c.getTargetId());
 
                 for (Integer sourceId : sourceParents) {
                     for (Integer targetId : targetParents) {
                         b.add(sourceId, targetId, thresh,
-                                MappingRelation.SUPERCLASS);
+                                parentsRelation);
                     }
                 }
             }
@@ -76,7 +95,7 @@ public class DLMatcher implements SecondaryMatcher {
         return b;
     }
 
-    private boolean allSourceHaveTargets(Alignment a, Set<Integer> sourceIds,
+    private boolean allSourcesHaveTargets(Alignment a, Set<Integer> sourceIds,
                                          Set<Integer> targetIds) {
         for (Integer sourceId : sourceIds) {
             if (!existsSourceMapping(a, sourceId, targetIds)) {
@@ -89,6 +108,26 @@ public class DLMatcher implements SecondaryMatcher {
     private boolean existsSourceMapping(Alignment a, int sourceId,
                                         Set<Integer> targetIds) {
         for (Integer targetId : targetIds) {
+            if (a.containsMapping(sourceId, targetId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean allTargetsHaveSources(Alignment a, Set<Integer> sourceIds,
+                                          Set<Integer> targetIds) {
+        for (Integer targetId : targetIds) {
+            if (!existsTargetMapping(a, targetId, sourceIds)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean existsTargetMapping(Alignment a, int targetId,
+                                        Set<Integer> sourceIds) {
+        for (Integer sourceId : sourceIds) {
             if (a.containsMapping(sourceId, targetId)) {
                 return true;
             }
