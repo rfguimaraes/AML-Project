@@ -94,7 +94,7 @@ public class DLMatcher implements SecondaryMatcher {
             if (parentsRelation != MappingRelation.UNKNOWN) {
                 sourceParents = relationshipMap.getAncestors(c.getSourceId(),
                         1);
-                targetParents = relationshipMap.getAncestors(c.getSourceId(),
+                targetParents = relationshipMap.getAncestors(c.getTargetId(),
                         1);
 
                 for (Integer sourceId : sourceParents) {
