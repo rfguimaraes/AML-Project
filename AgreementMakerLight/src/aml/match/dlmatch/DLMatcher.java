@@ -17,8 +17,8 @@
  * http://doi.ieeecomputersociety.org/10.1109/IITA.2007.95                     *
  * Actually using the RelationshipMap to produce the same effect.              *
  * @author Ricardo F. Guimarães                                                *
- * @date 26-08-2014                                                            *
- * @version 0.4                                                                *
+ * @date 29-08-2014                                                            *
+ * @version 0.8                                                                *
  ******************************************************************************/
 
 package aml.match.dlmatch;
@@ -58,58 +58,96 @@ public class DLMatcher implements SecondaryMatcher {
             sourceIds = relationshipMap.getSiblings(c.getSourceId());
             targetIds = relationshipMap.getSiblings(c.getTargetId());
             Set<Integer> sourceParents, targetParents;
-            boolean sourceImpliesTarget, targetImpliesSource;
             MappingRelation parentsRelation;
+            int nMaps = 0;
+            double simMaps = 0.0;
+            double conf = 0.0;
 
-            targetImpliesSource = allSourcesHaveTargets(a, sourceIds,
-                    targetIds);
-            sourceImpliesTarget = allTargetsHaveSources(a, sourceIds,
-                    targetIds);
 
-            //If all siblings in source have targets who are siblings.
+            parentsRelation = hardEvaluation(a, sourceIds, targetIds);
 
-            if(targetImpliesSource && !sourceImpliesTarget) {
-                parentsRelation = MappingRelation.SUPERCLASS;
-                System.out.println("Super");
-            }
-            else if(targetImpliesSource && sourceImpliesTarget) {
-                parentsRelation = MappingRelation.EQUIVALENCE;
-                System.out.println("Equiv");
-            }
-            else if(!targetImpliesSource && sourceImpliesTarget) {
-                parentsRelation = MappingRelation.SUBCLASS;
-                System.out.println("Sub");
-            }
-            else {
-                parentsRelation = MappingRelation.UNKNOWN;
-                System.out.println("Unk");
-            }
-            Pair <Integer, Double> res;
+            Pair<Integer, Double> res;
             res = mappingsSourceTarget(a, sourceIds, targetIds);
-            if (res.getFirst() >= 2*sourceIds.size() / 3 && res.getSecond() >
-                    0.5) {
-                parentsRelation = MappingRelation.SUPERCLASS;
-            }
+            simMaps = res.getSecond();
+            nMaps = res.getFirst();
 
-            if (parentsRelation != MappingRelation.UNKNOWN) {
-                sourceParents = relationshipMap.getAncestors(c.getSourceId(),
-                        1);
-                targetParents = relationshipMap.getAncestors(c.getTargetId(),
-                        1);
 
-                for (Integer sourceId : sourceParents) {
-                    for (Integer targetId : targetParents) {
-                        b.add(sourceId, targetId, thresh,
-                                parentsRelation);
+            sourceParents = relationshipMap.getAncestors(c.getSourceId(),
+                    1, -1);
+            targetParents = relationshipMap.getAncestors(c.getTargetId(),
+                    1, -1);
+
+            for (Integer sourceId : sourceParents) {
+                for (Integer targetId : targetParents) {
+
+                    if (parentsRelation == MappingRelation.UNKNOWN) {
+                        parentsRelation = softEvaluation(sourceId, targetId,
+                                nMaps);
+                    }
+                    conf = simMaps;
+
+                    if (parentsRelation != MappingRelation.UNKNOWN) {
+                        b.add(sourceId, targetId, conf, parentsRelation);
                     }
                 }
             }
         }
+
         return b;
     }
 
+    private MappingRelation hardEvaluation(Alignment a, Set<Integer> sourceIds,
+                                           Set<Integer> targetIds) {
+        boolean targetImpliesSource = allSourcesHaveTargets(a, sourceIds,
+                targetIds);
+        boolean sourceImpliesTarget = allTargetsHaveSources(a, sourceIds,
+                targetIds);
+
+        if (targetImpliesSource && !sourceImpliesTarget) {
+            return MappingRelation.SUPERCLASS;
+        } else if (targetImpliesSource && sourceImpliesTarget) {
+            return MappingRelation.EQUIVALENCE;
+        } else if (!targetImpliesSource && sourceImpliesTarget) {
+            return MappingRelation.SUBCLASS;
+        } else {
+            return MappingRelation.UNKNOWN;
+        }
+    }
+
+    private MappingRelation softEvaluation(int sourceId, int targetId,
+                                           int nMaps) {
+        int sChildren = relationshipMap.getDescendants
+                (sourceId, 1, -1).size();
+        int tChildren = relationshipMap.getDescendants
+                (targetId, 1, -1).size();
+
+        if (isNear(sChildren, tChildren,
+                3) && isNear(sChildren, nMaps,
+                sChildren / 3) && isNear(tChildren, nMaps,
+                tChildren / 3)) {
+            return MappingRelation.EQUIVALENCE;
+        } else if (isNear(nMaps, sChildren,
+                sChildren / 2) && tChildren > sChildren) {
+            return MappingRelation.SUPERCLASS;
+        } else if (isNear(nMaps, tChildren,
+                sChildren / 2) && sChildren > tChildren) {
+            return MappingRelation.SUBCLASS;
+        } else {
+            return MappingRelation.UNKNOWN;
+        }
+    }
+
+    private boolean isNear(int a, int b, double thresh) {
+        if (b <= a + thresh && b >= a - thresh)
+            return true;
+        else if (a <= b + thresh && a >= b - thresh)
+            return true;
+        else
+            return false;
+    }
+
     private boolean allSourcesHaveTargets(Alignment a, Set<Integer> sourceIds,
-                                         Set<Integer> targetIds) {
+                                          Set<Integer> targetIds) {
         for (Integer sourceId : sourceIds) {
             if (!existsSourceMapping(a, sourceId, targetIds)) {
                 return false;
@@ -119,8 +157,8 @@ public class DLMatcher implements SecondaryMatcher {
     }
 
     private Pair<Integer, Double> mappingsSourceTarget(Alignment a,
-                                             Set<Integer> sourceIds,
-                                          Set<Integer> targetIds) {
+                                                       Set<Integer> sourceIds,
+                                                       Set<Integer> targetIds) {
         int mp = 0;
         double sim = 0;
         for (Integer sourceId : sourceIds) {
@@ -132,7 +170,7 @@ public class DLMatcher implements SecondaryMatcher {
                 }
             }
         }
-        return new Pair<Integer, Double>(mp, sim/mp);
+        return new Pair<Integer, Double>(mp, sim / mp);
     }
 
     private boolean existsSourceMapping(Alignment a, int sourceId,
