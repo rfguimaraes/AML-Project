@@ -30,8 +30,8 @@
 * Lists the Matching Algorithms available for the user interface.             *
 *                                                                             *
 * @author Daniel Faria & Ricardo F. Guimarães                                 *
-* @date 25-08-2014                                                            *
-* @version 2.01                                                               *
+* @date 07-10-2014                                                            *
+* @version 2.02e                                                              *
 ******************************************************************************/
 package aml.settings;
 
@@ -40,7 +40,9 @@ public enum MatchingAlgorithm
     AML ("AML Matcher"),
     OAEI ("OAEI2013 Matcher"),
     LEXICAL ("Lexical Matcher"),
-    EXTRAS4AML ("Extras4AML Matcher"); //Added by Ricardo F. Guimarães
+    EXTRAS4AML ("Extras4AML Matcher"), //Added by Ricardo F. Guimarães
+    AMLEXTRA ("AML + EXTRAS4AML Matcher"), //Added by Ricardo F. Guimarães
+    OAEIEXTRA ("OAEI2013 + EXTRAS4AML Matcher"); //Added by Ricardo F. Guimarães
     
     String label;
     

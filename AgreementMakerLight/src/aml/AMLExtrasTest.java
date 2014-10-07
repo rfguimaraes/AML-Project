@@ -15,8 +15,8 @@
  * Test class for the Extras4AML matchers.                                     *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 25-08-2014                                                            *
- * @version 1.02                                                               *
+ * @date 07-10-2014                                                            *
+ * @version 2.0e                                                               *
  ******************************************************************************/
 
 package aml;
@@ -26,23 +26,30 @@ import aml.settings.MatchingAlgorithm;
 public class AMLExtrasTest {
     public static void main(String[] args) {
         //Path to input ontology files (edit manually)
-        String sourcePath = "store/oaei_tests/101/onto" +
-                ".rdf";
-        String targetPath = "store/oaei_tests/302/onto" +
-                ".rdf";
+        String sourcePath = "store/oaei_tests/101/onto.rdf";
+        String targetPath = "store/oaei_tests/206/onto.rdf";
         //Path to reference alignment (edit manually, or leave blank for no
         // evaluation)
-        String referencePath =
-                "store/oaei_tests/302/refalign.rdf";
+        String referencePath = "store/oaei_tests/206/refalign.rdf";
         //Path to save output alignment (edit manually,
         // or leave blank for no evaluation)
-        String outputPath = "store/oaei_tests/302/myres.rdf";
+        String outputPath = "store/oaei_tests/206/myres.rdf";
 
         AML aml = AML.getInstance();
         aml.openOntologies(sourcePath, targetPath);
 
         //Set the matching algorithm
-        aml.setMatcher(MatchingAlgorithm.EXTRAS4AML);
+
+        for (MatchingAlgorithm m : MatchingAlgorithm.values()) {
+            evaluate(m, referencePath, outputPath);
+        }
+    }
+
+    private static void evaluate(MatchingAlgorithm m, String referencePath,
+                          String outputPath) {
+        System.out.println("\n\n" + m + "\n\n");
+        AML aml = AML.getInstance();
+        aml.setMatcher(m);
 
         aml.match();
         try {

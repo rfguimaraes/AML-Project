@@ -1,4 +1,19 @@
 /******************************************************************************
+ * Copyright 2014-2014 Ricardo F. Guimarães                                    *
+ *                                                                             *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
+ * not use this file except in compliance with the License. You may obtain a   *
+ * copy of the License at http://www.apache.org/licenses/LICENSE-2.0           *
+ *                                                                             *
+ * Unless required by applicable law or agreed to in writing, software         *
+ * distributed under the License is distributed on an "AS IS" BASIS,           *
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    *
+ * See the License for the specific language governing permissions and         *
+ * limitations under the License.                                              *
+ *                                                                             *
+ * This file incorporates work covered by the following copyright and          *
+ * permission notice:                                                          *
+/******************************************************************************
 * Copyright 2013-2014 LASIGE                                                  *
 *                                                                             *
 * Licensed under the Apache License, Version 2.0 (the "License"); you may     *
@@ -18,8 +33,8 @@
 * similarity.                                                                 *
 *                                                                             *
 * @author Daniel Faria, Catarina Martins                                      *
-* @date 20-08-2014                                                            *
-* @version 2.0                                                                *
+* @date 07-10-2014                                                            *
+* @version 2.0e                                                               *
 ******************************************************************************/
 package aml.match;
 
@@ -33,6 +48,7 @@ import aml.ontology.URIMap;
 import aml.util.ISub;
 import aml.util.Similarity;
 
+//Ricardo F. Guimarães added workarounds to null translations
 public class PropertyMatcher
 {
 	
@@ -183,18 +199,20 @@ public class PropertyMatcher
 		
 		String sourceTrans = s.getTranslation();
 		String targetTrans = t.getTranslation();
-		
-		if(sourceName.equals(targetName) ||
-				sourceTrans.equals(targetName) ||
-				sourceName.equals(targetTrans))
+		boolean res = sourceName.equals(targetName);
+        if (sourceTrans != null)
+            res = res || sourceTrans.equals(targetName);
+        if (targetTrans != null)
+            res = res || sourceName.equals(targetName);
+		if(res)
 			return 1.0;
 		
 		double sim1 = nameSimilarity(sourceName,targetName, wn != null);
 		
 		double sim2 = 0.0;
-		if(!sourceTrans.equals(""))
+		if(sourceTrans != null && !sourceTrans.equals(""))
 			sim2 = nameSimilarity(sourceTrans,targetName, wn != null);
-		if(!targetTrans.equals(""))
+		if(targetTrans != null && !targetTrans.equals(""))
 			sim2 = Math.max(sim2,nameSimilarity(sourceName,targetTrans, wn != null));
 		
 		return Math.max(sim1,sim2);

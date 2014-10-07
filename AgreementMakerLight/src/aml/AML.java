@@ -33,8 +33,8 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria & Ricardo F. Guimarães                                 *
-* @date 25-08-2014                                                            *
-* @version 2.11                                                               *
+* @date 07-10-2014                                                            *
+* @version 2.12e                                                              *
 ******************************************************************************/
 package aml;
 
@@ -304,6 +304,24 @@ public class AML
             WikDictMatcher wiktmatch = new WikDictMatcher();
             wiktmatch.extendLexicons(threshold);
             LexicalMatcher m = new LexicalMatcher();
+            a = m.match(threshold);
+            DLMatcher dlMatcher = new DLMatcher();
+            a = dlMatcher.extendAlignment(a, threshold);
+        }
+        else if(matcher.equals(MatchingAlgorithm.OAEIEXTRA))
+        {
+            OAEI2013Matcher m = new OAEI2013Matcher(useBK,ignoreUMLS,repairAlignment);
+            WikDictMatcher wiktmatch = new WikDictMatcher();
+            wiktmatch.extendLexicons(threshold);
+            a = m.match();
+            DLMatcher dlMatcher = new DLMatcher();
+            a = dlMatcher.extendAlignment(a, threshold);
+        }
+        else if(matcher.equals(MatchingAlgorithm.AMLEXTRA))
+        {
+            AMLMatcher m = new AMLMatcher(selectedSources,sType,matchProperties,repairAlignment);
+            WikDictMatcher wiktmatch = new WikDictMatcher();
+            wiktmatch.extendLexicons(threshold);
             a = m.match(threshold);
             DLMatcher dlMatcher = new DLMatcher();
             a = dlMatcher.extendAlignment(a, threshold);
