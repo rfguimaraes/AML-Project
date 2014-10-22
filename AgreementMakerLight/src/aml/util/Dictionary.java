@@ -16,8 +16,8 @@
  * wikt2dict                                                                   *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 30-07-2014                                                            *
- * @version 0.4                                                                *
+ * @date 22-10-2014                                                            *
+ * @version 1.1                                                                *
  ******************************************************************************/
 
 package aml.util;
@@ -56,6 +56,42 @@ public class Dictionary {
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (file != null) {
+                try {
+                    file.close();
+                } catch (IOException e) {
+                    // TODO: handle this
+                }
+            }
+        }
+    }
+
+    public Dictionary(String sourceLang, String targetLang, boolean diff) {
+        // Setup the wik2dict output file location
+        System.setProperty("dictionary.dir", "store/knowledge/dictionary/");
+        String path = new File("store/knowledge/dictionary/").getAbsolutePath();
+        data = new HashMap<Pair<String, String>, DictionaryWord>();
+        FileReader file = null;
+        if(sourceLang.compareTo(targetLang) > 0) {
+            String temp = sourceLang;
+            sourceLang = targetLang;
+            targetLang = temp;
+        }
+        try {
+            String filename = sourceLang + "_" + targetLang + ".wikt.txt";
+            file = new FileReader(path + "/" + filename);
+            BufferedReader reader = new BufferedReader(file);
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                String[] values = line.split("\\t", -1);
+                DictionaryWord first = getWord(sourceLang, values[0]);
+                DictionaryWord second = getWord(targetLang, values[1]);
+                add(first, second);
+            }
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("Could not open file");
         } finally {
             if (file != null) {
                 try {
