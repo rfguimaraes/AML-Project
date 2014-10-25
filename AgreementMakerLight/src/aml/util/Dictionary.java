@@ -67,9 +67,10 @@ public class Dictionary {
         }
     }
 
-    public Dictionary(String sourceLang, String targetLang, boolean diff) {
+    public Dictionary(String dictionariesPath, String sourceLang,
+                      String targetLang) {
         // Setup the wik2dict output file location
-        System.setProperty("dictionary.dir", "store/knowledge/dictionary/");
+        System.setProperty("dictionary.dir", dictionariesPath);
         String path = new File("store/knowledge/dictionary/").getAbsolutePath();
         data = new HashMap<Pair<String, String>, DictionaryWord>();
         FileReader file = null;
