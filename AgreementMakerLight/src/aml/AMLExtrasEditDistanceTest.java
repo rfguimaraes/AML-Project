@@ -22,7 +22,7 @@
 
 package aml;
 
-import aml.util.Level2JaroWinkler;
+import aml.extras4aml.Level2JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 
 /**

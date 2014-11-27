@@ -20,7 +20,7 @@
  * @version 1.1                                                                *
  ******************************************************************************/
 
-package aml.util;
+package aml.extras4aml;
 
 import org.semanticweb.elk.util.collections.Pair;
 

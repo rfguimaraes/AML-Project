@@ -21,7 +21,7 @@
  * @version 0.8                                                                *
  ******************************************************************************/
 
-package aml.match.dlmatch;
+package aml.extras4aml;
 
 import aml.AML;
 import aml.match.Alignment;
@@ -37,12 +37,12 @@ import java.util.Set;
 /**
  * Created by rickfg on 8/22/14.
  */
-public class DLMatcher implements SecondaryMatcher {
+public class DescendantAnalyserMatcher implements SecondaryMatcher {
 
     private AML aml;
     private RelationshipMap relationshipMap;
 
-    public DLMatcher() {
+    public DescendantAnalyserMatcher() {
         aml = AML.getInstance();
         relationshipMap = aml.getRelationshipMap();
     }

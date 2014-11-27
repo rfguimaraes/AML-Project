@@ -40,7 +40,7 @@ public enum MatchingAlgorithm
     AML ("AML Matcher"),
     OAEI ("OAEI2013 Matcher"),
     LEXICAL ("Lexical Matcher"),
-    EXTRAS4AML ("Extras4AML Matcher"), //Added by Ricardo F. Guimarães
+    EXTRAS4AML ("EXTRAS4AML Matcher"), //Added by Ricardo F. Guimarães
     AMLEXTRA ("AML + EXTRAS4AML Matcher"), //Added by Ricardo F. Guimarães
     OAEIEXTRA ("OAEI2013 + EXTRAS4AML Matcher"); //Added by Ricardo F. Guimarães
     

@@ -21,19 +21,20 @@
 
 package aml;
 
+import aml.AML;
 import aml.settings.MatchingAlgorithm;
 
 public class AMLExtrasTest {
     public static void main(String[] args) {
         //Path to input ontology files (edit manually)
         String sourcePath = "store/oaei_tests/101/onto.rdf";
-        String targetPath = "store/oaei_tests/206/onto.rdf";
+        String targetPath = "/home/bcc/rickfg/Downloads/oaei_tests/302/onto.rdf";
         //Path to reference alignment (edit manually, or leave blank for no
         // evaluation)
-        String referencePath = "store/oaei_tests/206/refalign.rdf";
+        String referencePath = "/home/bcc/rickfg/Downloads/oaei_tests/302/refalign.rdf";
         //Path to save output alignment (edit manually,
         // or leave blank for no evaluation)
-        String outputPath = "store/oaei_tests/206/myres.rdf";
+        String outputPath = "store/oaei_tests/302/myres.rdf";
 
         AML aml = AML.getInstance();
         aml.openOntologies(sourcePath, targetPath);

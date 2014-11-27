@@ -19,7 +19,7 @@
  * @version 1.3                                                                *
  ******************************************************************************/
 
-package aml.util;
+package aml.extras4aml;
 
 import java.util.ArrayList;
 import java.util.HashMap;

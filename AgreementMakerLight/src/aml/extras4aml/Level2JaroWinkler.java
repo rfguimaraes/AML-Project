@@ -20,7 +20,7 @@
  * @version 0.1                                                                *
  ******************************************************************************/
 
-package aml.util;
+package aml.extras4aml;
 import java.lang.String;
 import uk.ac.shef.wit.simmetrics.tokenisers.TokeniserWhitespace;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;

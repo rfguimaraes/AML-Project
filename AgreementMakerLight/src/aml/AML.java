@@ -43,8 +43,9 @@ import java.io.FileFilter;
 import java.net.URI;
 import java.util.Vector;
 
+import aml.extras4aml.WikDictMatcher;
 import aml.match.*;
-import aml.match.dlmatch.DLMatcher;
+import aml.extras4aml.DescendantAnalyserMatcher;
 import org.apache.log4j.PropertyConfigurator;
 
 import aml.filter.CardinalityRepairer;
@@ -305,8 +306,8 @@ public class AML
             wiktmatch.extendLexicons(threshold);
             LexicalMatcher m = new LexicalMatcher();
             a = m.match(threshold);
-            DLMatcher dlMatcher = new DLMatcher();
-            a = dlMatcher.extendAlignment(a, threshold);
+            DescendantAnalyserMatcher daMatcher = new DescendantAnalyserMatcher();
+            a = daMatcher.extendAlignment(a, threshold);
         }
         else if(matcher.equals(MatchingAlgorithm.OAEIEXTRA))
         {
@@ -314,8 +315,8 @@ public class AML
             WikDictMatcher wiktmatch = new WikDictMatcher();
             wiktmatch.extendLexicons(threshold);
             a = m.match();
-            DLMatcher dlMatcher = new DLMatcher();
-            a = dlMatcher.extendAlignment(a, threshold);
+            DescendantAnalyserMatcher daMatcher = new DescendantAnalyserMatcher();
+            a = daMatcher.extendAlignment(a, threshold);
         }
         else if(matcher.equals(MatchingAlgorithm.AMLEXTRA))
         {
@@ -323,8 +324,8 @@ public class AML
             WikDictMatcher wiktmatch = new WikDictMatcher();
             wiktmatch.extendLexicons(threshold);
             a = m.match(threshold);
-            DLMatcher dlMatcher = new DLMatcher();
-            a = dlMatcher.extendAlignment(a, threshold);
+            DescendantAnalyserMatcher daMatcher = new DescendantAnalyserMatcher();
+            a = daMatcher.extendAlignment(a, threshold);
         }
     	if(a.size() >= 1)
     		currentMapping = 0;
