@@ -465,11 +465,13 @@ public class Alignment implements Iterable<Mapping>
 		double fmeasure = 2*precision*recall/(precision+recall);
 		String fms = Math.round(fmeasure*1000)/10.0 + "%";
 		
-		if(forGUI)
-			return "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
-		else
-			return "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
-					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
+//		if(forGUI)
+//			return "Precision: " + prc + "; Recall: " + rec + "; F-measure: " + fms;
+//		else
+//			return "Precision\tRecall\tF-measure\tFound\tCorrect\tReference\n" + prc +
+//					"\t" + rec + "\t" + fms + "\t" + found + "\t" + correct + "\t" + total;
+		return "" + prc + "\t" + rec + "\t" + fms + "\t" + found + "\t" +
+				correct + "\t" + total;
 	}
 
 	/**

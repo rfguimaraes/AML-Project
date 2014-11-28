@@ -41,7 +41,7 @@ import java.util.Set;
 /**
  * Created by rickfg on 8/5/14.
  */
-public class WikDictMatcher implements PrimaryMatcher, SecondaryMatcher,
+public class DictionaryMatcher implements PrimaryMatcher, SecondaryMatcher,
         LexiconExtender {
 
     private final String PATH = "store/knowledge/dictionary/";
@@ -57,7 +57,7 @@ public class WikDictMatcher implements PrimaryMatcher, SecondaryMatcher,
     private Lexicon sourceLex;
     private Lexicon targetLex;
 
-    public WikDictMatcher() {
+    public DictionaryMatcher() {
 
         // Setup the wik2dict output file location
         long time = System.currentTimeMillis() / 1000;
