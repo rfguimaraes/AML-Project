@@ -49,7 +49,7 @@ public class AMLExtrasTest {
         String outputPath = "";
         AML aml = AML.getInstance();
         aml.openOntologies(sourcePath, targetPath);
-        System.out.println("e4a " + path);
+        //System.out.println("e4a " + path);
         //Set the matching algorithm
 
         for (MatchingAlgorithm m : MatchingAlgorithm.values()){
