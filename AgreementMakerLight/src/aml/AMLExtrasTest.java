@@ -35,7 +35,7 @@ public class AMLExtrasTest {
         for (File file : files) {
             if (file.isDirectory()){
                 showFiles(file.listFiles());
-            } else if (file.getName().endsWith("onto.rdf")) {
+            } else if (file.getPath().endsWith("onto.rdf")) {
                 eval(file.getParent());
             }
         }
@@ -56,6 +56,7 @@ public class AMLExtrasTest {
             System.out.println("e4a " + path + " " + m.toString());
             evaluate(m, referencePath, outputPath);
         }
+        aml.closeOntologies();
     }
 
     public static void main(String[] args)
@@ -102,5 +103,6 @@ public class AMLExtrasTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        aml.closeAlignment();
     }
 }
