@@ -1,0 +1,666 @@
+store/oaei_tests/benchmarks/202-6,AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/202-6,OAEI2013,48.8,21.6,30.0
+store/oaei_tests/benchmarks/202-6,Lexical,100.0,14.4,25.2
+store/oaei_tests/benchmarks/202-6,EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/202-6,AML + EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/202-6,OAEI2013 + EXTRAS4AML,48.8,21.6,30.0
+store/oaei_tests/benchmarks/254,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/254,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/254,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/254,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/254,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/254,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/250-2,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/250-2,OAEI2013,60.5,78.8,68.4
+store/oaei_tests/benchmarks/250-2,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/250-2,EXTRAS4AML,100.0,84.8,91.8
+store/oaei_tests/benchmarks/250-2,AML + EXTRAS4AML,100.0,84.8,91.8
+store/oaei_tests/benchmarks/250-2,OAEI2013 + EXTRAS4AML,62.2,84.8,71.8
+store/oaei_tests/benchmarks/246,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/246,OAEI2013,56.9,100.0,72.5
+store/oaei_tests/benchmarks/246,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/246,EXTRAS4AML,87.9,100.0,93.5
+store/oaei_tests/benchmarks/246,AML + EXTRAS4AML,87.9,100.0,93.5
+store/oaei_tests/benchmarks/246,OAEI2013 + EXTRAS4AML,52.7,100.0,69.0
+store/oaei_tests/benchmarks/265,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/265,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/265,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/265,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/265,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/265,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/222,AML,100.0,31.2,47.5
+store/oaei_tests/benchmarks/222,OAEI2013,42.4,92.5,58.1
+store/oaei_tests/benchmarks/222,Lexical,100.0,31.2,47.5
+store/oaei_tests/benchmarks/222,EXTRAS4AML,87.9,31.2,46.0
+store/oaei_tests/benchmarks/222,AML + EXTRAS4AML,87.9,31.2,46.0
+store/oaei_tests/benchmarks/222,OAEI2013 + EXTRAS4AML,41.5,92.5,57.3
+store/oaei_tests/benchmarks/262-6,AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/262-6,OAEI2013,45.2,42.4,43.8
+store/oaei_tests/benchmarks/262-6,Lexical,100.0,42.4,59.6
+store/oaei_tests/benchmarks/262-6,EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/262-6,AML + EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/262-6,OAEI2013 + EXTRAS4AML,45.2,42.4,43.8
+store/oaei_tests/benchmarks/253-2,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/253-2,OAEI2013,65.8,51.5,57.8
+store/oaei_tests/benchmarks/253-2,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/253-2,EXTRAS4AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/253-2,AML + EXTRAS4AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/253-2,OAEI2013 + EXTRAS4AML,65.8,51.5,57.8
+store/oaei_tests/benchmarks/252-2,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-2,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/252-2,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-2,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-2,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-2,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/201-2,AML,100.0,29.9,46.0
+store/oaei_tests/benchmarks/201-2,OAEI2013,68.3,57.7,62.6
+store/oaei_tests/benchmarks/201-2,Lexical,100.0,29.9,46.0
+store/oaei_tests/benchmarks/201-2,EXTRAS4AML,100.0,32.0,48.4
+store/oaei_tests/benchmarks/201-2,AML + EXTRAS4AML,100.0,32.0,48.4
+store/oaei_tests/benchmarks/201-2,OAEI2013 + EXTRAS4AML,69.0,59.8,64.1
+store/oaei_tests/benchmarks/232,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/232,OAEI2013,48.7,100.0,65.5
+store/oaei_tests/benchmarks/232,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/232,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/232,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/232,OAEI2013 + EXTRAS4AML,48.7,100.0,65.5
+store/oaei_tests/benchmarks/248-6,AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/248-6,OAEI2013,48.8,21.6,30.0
+store/oaei_tests/benchmarks/248-6,Lexical,100.0,14.4,25.2
+store/oaei_tests/benchmarks/248-6,EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/248-6,AML + EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/248-6,OAEI2013 + EXTRAS4AML,48.8,21.6,30.0
+store/oaei_tests/benchmarks/248-4,AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/248-4,OAEI2013,59.3,36.1,44.9
+store/oaei_tests/benchmarks/248-4,Lexical,100.0,20.6,34.2
+store/oaei_tests/benchmarks/248-4,EXTRAS4AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/248-4,AML + EXTRAS4AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/248-4,OAEI2013 + EXTRAS4AML,59.3,36.1,44.9
+store/oaei_tests/benchmarks/302,AML,90.9,21.3,34.5
+store/oaei_tests/benchmarks/302,OAEI2013,76.9,21.3,33.3
+store/oaei_tests/benchmarks/302,Lexical,90.9,21.3,34.5
+store/oaei_tests/benchmarks/302,EXTRAS4AML,92.3,25.5,40.0
+store/oaei_tests/benchmarks/302,AML + EXTRAS4AML,92.3,25.5,40.0
+store/oaei_tests/benchmarks/302,OAEI2013 + EXTRAS4AML,80.0,25.5,38.7
+store/oaei_tests/benchmarks/240,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/240,OAEI2013,60.0,100.0,75.0
+store/oaei_tests/benchmarks/240,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/240,EXTRAS4AML,94.3,100.0,97.1
+store/oaei_tests/benchmarks/240,AML + EXTRAS4AML,97.1,100.0,98.5
+store/oaei_tests/benchmarks/240,OAEI2013 + EXTRAS4AML,58.9,100.0,74.2
+store/oaei_tests/benchmarks/209,AML,76.9,10.3,18.2
+store/oaei_tests/benchmarks/209,OAEI2013,25.4,16.5,20.0
+store/oaei_tests/benchmarks/209,Lexical,71.4,5.2,9.6
+store/oaei_tests/benchmarks/209,EXTRAS4AML,71.4,5.2,9.6
+store/oaei_tests/benchmarks/209,AML + EXTRAS4AML,76.9,10.3,18.2
+store/oaei_tests/benchmarks/209,OAEI2013 + EXTRAS4AML,25.4,16.5,20.0
+store/oaei_tests/benchmarks/254-4,AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/254-4,OAEI2013,54.1,60.6,57.1
+store/oaei_tests/benchmarks/254-4,Lexical,100.0,60.6,75.5
+store/oaei_tests/benchmarks/254-4,EXTRAS4AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/254-4,AML + EXTRAS4AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/254-4,OAEI2013 + EXTRAS4AML,54.1,60.6,57.1
+store/oaei_tests/benchmarks/236,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/236,OAEI2013,66.0,100.0,79.5
+store/oaei_tests/benchmarks/236,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/236,EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/236,AML + EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/236,OAEI2013 + EXTRAS4AML,66.0,100.0,79.5
+store/oaei_tests/benchmarks/304,AML,90.3,36.8,52.3
+store/oaei_tests/benchmarks/304,OAEI2013,75.5,48.7,59.2
+store/oaei_tests/benchmarks/304,Lexical,90.0,35.5,50.9
+store/oaei_tests/benchmarks/304,EXTRAS4AML,70.0,36.8,48.3
+store/oaei_tests/benchmarks/304,AML + EXTRAS4AML,80.6,38.2,51.8
+store/oaei_tests/benchmarks/304,OAEI2013 + EXTRAS4AML,70.4,50.0,58.5
+store/oaei_tests/benchmarks/260-6,AML,100.0,41.4,58.5
+store/oaei_tests/benchmarks/260-6,OAEI2013,35.3,41.4,38.1
+store/oaei_tests/benchmarks/260-6,Lexical,100.0,41.4,58.5
+store/oaei_tests/benchmarks/260-6,EXTRAS4AML,92.3,41.4,57.1
+store/oaei_tests/benchmarks/260-6,AML + EXTRAS4AML,92.3,41.4,57.1
+store/oaei_tests/benchmarks/260-6,OAEI2013 + EXTRAS4AML,34.3,41.4,37.5
+store/oaei_tests/benchmarks/251-6,AML,100.0,12.9,22.9
+store/oaei_tests/benchmarks/251-6,OAEI2013,45.0,19.4,27.1
+store/oaei_tests/benchmarks/251-6,Lexical,100.0,12.9,22.9
+store/oaei_tests/benchmarks/251-6,EXTRAS4AML,92.3,12.9,22.6
+store/oaei_tests/benchmarks/251-6,AML + EXTRAS4AML,92.3,12.9,22.6
+store/oaei_tests/benchmarks/251-6,OAEI2013 + EXTRAS4AML,43.9,19.4,26.9
+store/oaei_tests/benchmarks/203,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/203,OAEI2013,48.5,100.0,65.3
+store/oaei_tests/benchmarks/203,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/203,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/203,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/203,OAEI2013 + EXTRAS4AML,48.5,100.0,65.3
+store/oaei_tests/benchmarks/259-8,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-8,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/259-8,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-8,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-8,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-8,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/202-2,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/202-2,OAEI2013,65.8,51.5,57.8
+store/oaei_tests/benchmarks/202-2,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/202-2,EXTRAS4AML,100.0,28.9,44.8
+store/oaei_tests/benchmarks/202-2,AML + EXTRAS4AML,100.0,28.9,44.8
+store/oaei_tests/benchmarks/202-2,OAEI2013 + EXTRAS4AML,66.7,53.6,59.4
+store/oaei_tests/benchmarks/252-6,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-6,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/252-6,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-6,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-6,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-6,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/233,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/233,OAEI2013,66.0,100.0,79.5
+store/oaei_tests/benchmarks/233,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/233,EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/233,AML + EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/233,OAEI2013 + EXTRAS4AML,66.0,100.0,79.5
+store/oaei_tests/benchmarks/257-6,AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/257-6,OAEI2013,45.2,42.4,43.8
+store/oaei_tests/benchmarks/257-6,Lexical,100.0,42.4,59.6
+store/oaei_tests/benchmarks/257-6,EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/257-6,AML + EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/257-6,OAEI2013 + EXTRAS4AML,45.2,42.4,43.8
+store/oaei_tests/benchmarks/208,AML,70.7,29.9,42.0
+store/oaei_tests/benchmarks/208,OAEI2013,39.0,92.8,54.9
+store/oaei_tests/benchmarks/208,Lexical,67.6,25.8,37.3
+store/oaei_tests/benchmarks/208,EXTRAS4AML,62.5,25.8,36.5
+store/oaei_tests/benchmarks/208,AML + EXTRAS4AML,70.7,29.9,42.0
+store/oaei_tests/benchmarks/208,OAEI2013 + EXTRAS4AML,39.0,92.8,54.9
+store/oaei_tests/benchmarks/254-8,AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/254-8,OAEI2013,29.2,21.2,24.6
+store/oaei_tests/benchmarks/254-8,Lexical,100.0,21.2,35.0
+store/oaei_tests/benchmarks/254-8,EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/254-8,AML + EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/254-8,OAEI2013 + EXTRAS4AML,29.2,21.2,24.6
+store/oaei_tests/benchmarks/254-6,AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/254-6,OAEI2013,45.2,42.4,43.8
+store/oaei_tests/benchmarks/254-6,Lexical,100.0,42.4,59.6
+store/oaei_tests/benchmarks/254-6,EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/254-6,AML + EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/254-6,OAEI2013 + EXTRAS4AML,45.2,42.4,43.8
+store/oaei_tests/benchmarks/253-4,AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/253-4,OAEI2013,59.3,36.1,44.9
+store/oaei_tests/benchmarks/253-4,Lexical,100.0,20.6,34.2
+store/oaei_tests/benchmarks/253-4,EXTRAS4AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/253-4,AML + EXTRAS4AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/253-4,OAEI2013 + EXTRAS4AML,59.3,36.1,44.9
+store/oaei_tests/benchmarks/241,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/241,OAEI2013,66.0,100.0,79.5
+store/oaei_tests/benchmarks/241,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/241,EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/241,AML + EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/241,OAEI2013 + EXTRAS4AML,66.0,100.0,79.5
+store/oaei_tests/benchmarks/257-8,AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/257-8,OAEI2013,29.2,21.2,24.6
+store/oaei_tests/benchmarks/257-8,Lexical,100.0,21.2,35.0
+store/oaei_tests/benchmarks/257-8,EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/257-8,AML + EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/257-8,OAEI2013 + EXTRAS4AML,29.2,21.2,24.6
+store/oaei_tests/benchmarks/248,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/248,OAEI2013,4.5,1.0,1.7
+store/oaei_tests/benchmarks/248,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/248,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/248,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/248,OAEI2013 + EXTRAS4AML,4.5,1.0,1.7
+store/oaei_tests/benchmarks/249-2,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/249-2,OAEI2013,65.8,51.5,57.8
+store/oaei_tests/benchmarks/249-2,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/249-2,EXTRAS4AML,100.0,28.9,44.8
+store/oaei_tests/benchmarks/249-2,AML + EXTRAS4AML,100.0,28.9,44.8
+store/oaei_tests/benchmarks/249-2,OAEI2013 + EXTRAS4AML,66.7,53.6,59.4
+store/oaei_tests/benchmarks/104,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/104,OAEI2013,44.6,89.7,59.6
+store/oaei_tests/benchmarks/104,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/104,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/104,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/104,OAEI2013 + EXTRAS4AML,44.6,89.7,59.6
+store/oaei_tests/benchmarks/261-6,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-6,OAEI2013,54.2,78.8,64.2
+store/oaei_tests/benchmarks/261-6,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-6,EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-6,AML + EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-6,OAEI2013 + EXTRAS4AML,54.0,81.8,65.1
+store/oaei_tests/benchmarks/103,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/103,OAEI2013,42.2,89.7,57.4
+store/oaei_tests/benchmarks/103,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/103,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/103,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/103,OAEI2013 + EXTRAS4AML,42.2,89.7,57.4
+store/oaei_tests/benchmarks/257-2,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/257-2,OAEI2013,60.5,78.8,68.4
+store/oaei_tests/benchmarks/257-2,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/257-2,EXTRAS4AML,100.0,84.8,91.8
+store/oaei_tests/benchmarks/257-2,AML + EXTRAS4AML,100.0,84.8,91.8
+store/oaei_tests/benchmarks/257-2,OAEI2013 + EXTRAS4AML,62.2,84.8,71.8
+store/oaei_tests/benchmarks/261-2,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-2,OAEI2013,54.2,78.8,64.2
+store/oaei_tests/benchmarks/261-2,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-2,EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-2,AML + EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-2,OAEI2013 + EXTRAS4AML,54.0,81.8,65.1
+store/oaei_tests/benchmarks/221,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/221,OAEI2013,48.7,100.0,65.5
+store/oaei_tests/benchmarks/221,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/221,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/221,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/221,OAEI2013 + EXTRAS4AML,48.7,100.0,65.5
+store/oaei_tests/benchmarks/260-4,AML,100.0,62.1,76.6
+store/oaei_tests/benchmarks/260-4,OAEI2013,45.0,62.1,52.2
+store/oaei_tests/benchmarks/260-4,Lexical,100.0,62.1,76.6
+store/oaei_tests/benchmarks/260-4,EXTRAS4AML,94.7,62.1,75.0
+store/oaei_tests/benchmarks/260-4,AML + EXTRAS4AML,94.7,62.1,75.0
+store/oaei_tests/benchmarks/260-4,OAEI2013 + EXTRAS4AML,43.9,62.1,51.4
+store/oaei_tests/benchmarks/250-6,AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/250-6,OAEI2013,45.2,42.4,43.8
+store/oaei_tests/benchmarks/250-6,Lexical,100.0,42.4,59.6
+store/oaei_tests/benchmarks/250-6,EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/250-6,AML + EXTRAS4AML,100.0,42.4,59.6
+store/oaei_tests/benchmarks/250-6,OAEI2013 + EXTRAS4AML,45.2,42.4,43.8
+store/oaei_tests/benchmarks/262-2,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/262-2,OAEI2013,60.5,78.8,68.4
+store/oaei_tests/benchmarks/262-2,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/262-2,EXTRAS4AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/262-2,AML + EXTRAS4AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/262-2,OAEI2013 + EXTRAS4AML,60.5,78.8,68.4
+store/oaei_tests/benchmarks/206,AML,87.5,14.4,24.8
+store/oaei_tests/benchmarks/206,OAEI2013,35.1,27.8,31.0
+store/oaei_tests/benchmarks/206,Lexical,60.0,3.1,5.9
+store/oaei_tests/benchmarks/206,EXTRAS4AML,60.0,3.1,5.9
+store/oaei_tests/benchmarks/206,AML + EXTRAS4AML,87.5,14.4,24.8
+store/oaei_tests/benchmarks/206,OAEI2013 + EXTRAS4AML,35.1,27.8,31.0
+store/oaei_tests/benchmarks/252-4,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-4,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/252-4,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-4,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-4,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-4,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/253-6,AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/253-6,OAEI2013,48.8,21.6,30.0
+store/oaei_tests/benchmarks/253-6,Lexical,100.0,14.4,25.2
+store/oaei_tests/benchmarks/253-6,EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/253-6,AML + EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/253-6,OAEI2013 + EXTRAS4AML,48.8,21.6,30.0
+store/oaei_tests/benchmarks/251-8,AML,100.0,7.5,14.0
+store/oaei_tests/benchmarks/251-8,OAEI2013,29.0,9.7,14.5
+store/oaei_tests/benchmarks/251-8,Lexical,100.0,7.5,14.0
+store/oaei_tests/benchmarks/251-8,EXTRAS4AML,100.0,7.5,14.0
+store/oaei_tests/benchmarks/251-8,AML + EXTRAS4AML,100.0,7.5,14.0
+store/oaei_tests/benchmarks/251-8,OAEI2013 + EXTRAS4AML,29.0,9.7,14.5
+store/oaei_tests/benchmarks/258-4,AML,100.0,19.4,32.4
+store/oaei_tests/benchmarks/258-4,OAEI2013,56.4,33.3,41.9
+store/oaei_tests/benchmarks/258-4,Lexical,100.0,19.4,32.4
+store/oaei_tests/benchmarks/258-4,EXTRAS4AML,94.7,19.4,32.1
+store/oaei_tests/benchmarks/258-4,AML + EXTRAS4AML,94.7,19.4,32.1
+store/oaei_tests/benchmarks/258-4,OAEI2013 + EXTRAS4AML,55.4,33.3,41.6
+store/oaei_tests/benchmarks/252-8,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-8,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/252-8,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/252-8,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-8,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/252-8,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/266,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/266,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/266,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/266,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/266,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/266,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/249-8,AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/249-8,OAEI2013,29.0,9.3,14.1
+store/oaei_tests/benchmarks/249-8,Lexical,100.0,7.2,13.5
+store/oaei_tests/benchmarks/249-8,EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/249-8,AML + EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/249-8,OAEI2013 + EXTRAS4AML,29.0,9.3,14.1
+store/oaei_tests/benchmarks/237,AML,100.0,31.2,47.5
+store/oaei_tests/benchmarks/237,OAEI2013,42.4,92.5,58.1
+store/oaei_tests/benchmarks/237,Lexical,100.0,31.2,47.5
+store/oaei_tests/benchmarks/237,EXTRAS4AML,87.9,31.2,46.0
+store/oaei_tests/benchmarks/237,AML + EXTRAS4AML,87.9,31.2,46.0
+store/oaei_tests/benchmarks/237,OAEI2013 + EXTRAS4AML,41.5,92.5,57.3
+store/oaei_tests/benchmarks/249,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/249,OAEI2013,4.5,1.0,1.7
+store/oaei_tests/benchmarks/249,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/249,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/249,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/249,OAEI2013 + EXTRAS4AML,4.5,1.0,1.7
+store/oaei_tests/benchmarks/260-8,AML,100.0,24.1,38.9
+store/oaei_tests/benchmarks/260-8,OAEI2013,24.1,24.1,24.1
+store/oaei_tests/benchmarks/260-8,Lexical,100.0,24.1,38.9
+store/oaei_tests/benchmarks/260-8,EXTRAS4AML,100.0,24.1,38.9
+store/oaei_tests/benchmarks/260-8,AML + EXTRAS4AML,100.0,24.1,38.9
+store/oaei_tests/benchmarks/260-8,OAEI2013 + EXTRAS4AML,24.1,24.1,24.1
+store/oaei_tests/benchmarks/201-6,AML,100.0,19.6,32.8
+store/oaei_tests/benchmarks/201-6,OAEI2013,56.9,34.0,42.6
+store/oaei_tests/benchmarks/201-6,Lexical,100.0,19.6,32.8
+store/oaei_tests/benchmarks/201-6,EXTRAS4AML,100.0,19.6,32.8
+store/oaei_tests/benchmarks/201-6,AML + EXTRAS4AML,100.0,19.6,32.8
+store/oaei_tests/benchmarks/201-6,OAEI2013 + EXTRAS4AML,56.9,34.0,42.6
+store/oaei_tests/benchmarks/258,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/258,OAEI2013,4.5,1.1,1.7
+store/oaei_tests/benchmarks/258,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/258,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/258,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/258,OAEI2013 + EXTRAS4AML,4.5,1.1,1.7
+store/oaei_tests/benchmarks/262-8,AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/262-8,OAEI2013,29.2,21.2,24.6
+store/oaei_tests/benchmarks/262-8,Lexical,100.0,21.2,35.0
+store/oaei_tests/benchmarks/262-8,EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/262-8,AML + EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/262-8,OAEI2013 + EXTRAS4AML,29.2,21.2,24.6
+store/oaei_tests/benchmarks/258-6,AML,100.0,12.9,22.9
+store/oaei_tests/benchmarks/258-6,OAEI2013,45.0,19.4,27.1
+store/oaei_tests/benchmarks/258-6,Lexical,100.0,12.9,22.9
+store/oaei_tests/benchmarks/258-6,EXTRAS4AML,92.3,12.9,22.6
+store/oaei_tests/benchmarks/258-6,AML + EXTRAS4AML,92.3,12.9,22.6
+store/oaei_tests/benchmarks/258-6,OAEI2013 + EXTRAS4AML,43.9,19.4,26.9
+store/oaei_tests/benchmarks/248-8,AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/248-8,OAEI2013,29.0,9.3,14.1
+store/oaei_tests/benchmarks/248-8,Lexical,100.0,7.2,13.5
+store/oaei_tests/benchmarks/248-8,EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/248-8,AML + EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/248-8,OAEI2013 + EXTRAS4AML,29.0,9.3,14.1
+store/oaei_tests/benchmarks/259-4,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-4,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/259-4,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-4,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-4,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-4,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/260,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/260,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/260,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/260,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/260,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/260,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/204,AML,71.4,30.9,43.2
+store/oaei_tests/benchmarks/204,OAEI2013,40.4,93.8,56.5
+store/oaei_tests/benchmarks/204,Lexical,68.4,26.8,38.5
+store/oaei_tests/benchmarks/204,EXTRAS4AML,63.4,26.8,37.7
+store/oaei_tests/benchmarks/204,AML + EXTRAS4AML,71.4,30.9,43.2
+store/oaei_tests/benchmarks/204,OAEI2013 + EXTRAS4AML,40.4,93.8,56.5
+store/oaei_tests/benchmarks/259-2,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-2,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/259-2,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-2,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-2,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-2,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/259-6,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-6,OAEI2013,64.9,49.5,56.1
+store/oaei_tests/benchmarks/259-6,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/259-6,EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-6,AML + EXTRAS4AML,96.4,27.8,43.2
+store/oaei_tests/benchmarks/259-6,OAEI2013 + EXTRAS4AML,64.5,50.5,56.6
+store/oaei_tests/benchmarks/207,AML,87.5,14.4,24.8
+store/oaei_tests/benchmarks/207,OAEI2013,35.1,27.8,31.0
+store/oaei_tests/benchmarks/207,Lexical,60.0,3.1,5.9
+store/oaei_tests/benchmarks/207,EXTRAS4AML,60.0,3.1,5.9
+store/oaei_tests/benchmarks/207,AML + EXTRAS4AML,87.5,14.4,24.8
+store/oaei_tests/benchmarks/207,OAEI2013 + EXTRAS4AML,35.1,27.8,31.0
+store/oaei_tests/benchmarks/250-8,AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/250-8,OAEI2013,29.2,21.2,24.6
+store/oaei_tests/benchmarks/250-8,Lexical,100.0,21.2,35.0
+store/oaei_tests/benchmarks/250-8,EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/250-8,AML + EXTRAS4AML,100.0,21.2,35.0
+store/oaei_tests/benchmarks/250-8,OAEI2013 + EXTRAS4AML,29.2,21.2,24.6
+store/oaei_tests/benchmarks/260-2,AML,100.0,79.3,88.5
+store/oaei_tests/benchmarks/260-2,OAEI2013,51.1,79.3,62.2
+store/oaei_tests/benchmarks/260-2,Lexical,100.0,79.3,88.5
+store/oaei_tests/benchmarks/260-2,EXTRAS4AML,88.5,79.3,83.6
+store/oaei_tests/benchmarks/260-2,AML + EXTRAS4AML,88.5,79.3,83.6
+store/oaei_tests/benchmarks/260-2,OAEI2013 + EXTRAS4AML,47.9,79.3,59.7
+store/oaei_tests/benchmarks/253-8,AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/253-8,OAEI2013,29.0,9.3,14.1
+store/oaei_tests/benchmarks/253-8,Lexical,100.0,7.2,13.5
+store/oaei_tests/benchmarks/253-8,EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/253-8,AML + EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/253-8,OAEI2013 + EXTRAS4AML,29.0,9.3,14.1
+store/oaei_tests/benchmarks/258-8,AML,100.0,7.5,14.0
+store/oaei_tests/benchmarks/258-8,OAEI2013,29.0,9.7,14.5
+store/oaei_tests/benchmarks/258-8,Lexical,100.0,7.5,14.0
+store/oaei_tests/benchmarks/258-8,EXTRAS4AML,100.0,7.5,14.0
+store/oaei_tests/benchmarks/258-8,AML + EXTRAS4AML,100.0,7.5,14.0
+store/oaei_tests/benchmarks/258-8,OAEI2013 + EXTRAS4AML,29.0,9.7,14.5
+store/oaei_tests/benchmarks/239,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/239,OAEI2013,56.9,100.0,72.5
+store/oaei_tests/benchmarks/239,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/239,EXTRAS4AML,87.9,100.0,93.5
+store/oaei_tests/benchmarks/239,AML + EXTRAS4AML,87.9,100.0,93.5
+store/oaei_tests/benchmarks/239,OAEI2013 + EXTRAS4AML,52.7,100.0,69.0
+store/oaei_tests/benchmarks/228,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/228,OAEI2013,66.0,100.0,79.5
+store/oaei_tests/benchmarks/228,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/228,EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/228,AML + EXTRAS4AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/228,OAEI2013 + EXTRAS4AML,66.0,100.0,79.5
+store/oaei_tests/benchmarks/251-2,AML,100.0,24.7,39.7
+store/oaei_tests/benchmarks/251-2,OAEI2013,62.3,46.2,53.1
+store/oaei_tests/benchmarks/251-2,Lexical,100.0,24.7,39.7
+store/oaei_tests/benchmarks/251-2,EXTRAS4AML,88.5,24.7,38.7
+store/oaei_tests/benchmarks/251-2,AML + EXTRAS4AML,88.5,24.7,38.7
+store/oaei_tests/benchmarks/251-2,OAEI2013 + EXTRAS4AML,59.7,46.2,52.1
+store/oaei_tests/benchmarks/231,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/231,OAEI2013,48.7,100.0,65.5
+store/oaei_tests/benchmarks/231,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/231,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/231,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/231,OAEI2013 + EXTRAS4AML,48.7,100.0,65.5
+store/oaei_tests/benchmarks/257-4,AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/257-4,OAEI2013,54.1,60.6,57.1
+store/oaei_tests/benchmarks/257-4,Lexical,100.0,60.6,75.5
+store/oaei_tests/benchmarks/257-4,EXTRAS4AML,100.0,63.6,77.8
+store/oaei_tests/benchmarks/257-4,AML + EXTRAS4AML,100.0,63.6,77.8
+store/oaei_tests/benchmarks/257-4,OAEI2013 + EXTRAS4AML,55.3,63.6,59.2
+store/oaei_tests/benchmarks/303,AML,83.3,31.3,45.5
+store/oaei_tests/benchmarks/303,OAEI2013,19.3,35.4,25.0
+store/oaei_tests/benchmarks/303,Lexical,86.7,27.1,41.3
+store/oaei_tests/benchmarks/303,EXTRAS4AML,76.5,27.1,40.0
+store/oaei_tests/benchmarks/303,AML + EXTRAS4AML,71.4,31.3,43.5
+store/oaei_tests/benchmarks/303,OAEI2013 + EXTRAS4AML,18.7,35.4,24.5
+store/oaei_tests/benchmarks,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/223,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/223,OAEI2013,46.2,88.7,60.8
+store/oaei_tests/benchmarks/223,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/223,EXTRAS4AML,94.3,34.0,50.0
+store/oaei_tests/benchmarks/223,AML + EXTRAS4AML,97.1,34.0,50.4
+store/oaei_tests/benchmarks/223,OAEI2013 + EXTRAS4AML,46.0,88.7,60.6
+store/oaei_tests/benchmarks/230,AML,100.0,34.7,51.5
+store/oaei_tests/benchmarks/230,OAEI2013,33.3,86.1,48.1
+store/oaei_tests/benchmarks/230,Lexical,100.0,34.7,51.5
+store/oaei_tests/benchmarks/230,EXTRAS4AML,100.0,34.7,51.5
+store/oaei_tests/benchmarks/230,AML + EXTRAS4AML,100.0,34.7,51.5
+store/oaei_tests/benchmarks/230,OAEI2013 + EXTRAS4AML,33.3,86.1,48.1
+store/oaei_tests/benchmarks/257,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/257,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/257,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/257,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/257,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/257,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/261,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/261,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/261,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/261,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/261,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/261,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/249-6,AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/249-6,OAEI2013,48.8,21.6,30.0
+store/oaei_tests/benchmarks/249-6,Lexical,100.0,14.4,25.2
+store/oaei_tests/benchmarks/249-6,EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/249-6,AML + EXTRAS4AML,100.0,14.4,25.2
+store/oaei_tests/benchmarks/249-6,OAEI2013 + EXTRAS4AML,48.8,21.6,30.0
+store/oaei_tests/benchmarks/262,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/262,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/262,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/262,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/262,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/262,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/252,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/252,OAEI2013,4.5,1.0,1.7
+store/oaei_tests/benchmarks/252,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/252,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/252,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/252,OAEI2013 + EXTRAS4AML,4.5,1.0,1.7
+store/oaei_tests/benchmarks/202-8,AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/202-8,OAEI2013,29.0,9.3,14.1
+store/oaei_tests/benchmarks/202-8,Lexical,100.0,7.2,13.5
+store/oaei_tests/benchmarks/202-8,EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/202-8,AML + EXTRAS4AML,100.0,7.2,13.5
+store/oaei_tests/benchmarks/202-8,OAEI2013 + EXTRAS4AML,29.0,9.3,14.1
+store/oaei_tests/benchmarks/250,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/250,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/250,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/250,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/250,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/250,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/259,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/259,OAEI2013,4.5,1.0,1.7
+store/oaei_tests/benchmarks/259,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/259,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/259,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/259,OAEI2013 + EXTRAS4AML,4.5,1.0,1.7
+store/oaei_tests/benchmarks/201-4,AML,100.0,24.7,39.7
+store/oaei_tests/benchmarks/201-4,OAEI2013,63.8,45.4,53.0
+store/oaei_tests/benchmarks/201-4,Lexical,100.0,24.7,39.7
+store/oaei_tests/benchmarks/201-4,EXTRAS4AML,100.0,25.8,41.0
+store/oaei_tests/benchmarks/201-4,AML + EXTRAS4AML,100.0,25.8,41.0
+store/oaei_tests/benchmarks/201-4,OAEI2013 + EXTRAS4AML,64.3,46.4,53.9
+store/oaei_tests/benchmarks/250-4,AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/250-4,OAEI2013,54.1,60.6,57.1
+store/oaei_tests/benchmarks/250-4,Lexical,100.0,60.6,75.5
+store/oaei_tests/benchmarks/250-4,EXTRAS4AML,100.0,63.6,77.8
+store/oaei_tests/benchmarks/250-4,AML + EXTRAS4AML,100.0,63.6,77.8
+store/oaei_tests/benchmarks/250-4,OAEI2013 + EXTRAS4AML,55.3,63.6,59.2
+store/oaei_tests/benchmarks/238,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/238,OAEI2013,46.2,88.7,60.8
+store/oaei_tests/benchmarks/238,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/238,EXTRAS4AML,94.3,34.0,50.0
+store/oaei_tests/benchmarks/238,AML + EXTRAS4AML,97.1,34.0,50.4
+store/oaei_tests/benchmarks/238,OAEI2013 + EXTRAS4AML,46.0,88.7,60.6
+store/oaei_tests/benchmarks/251,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/251,OAEI2013,4.5,1.1,1.7
+store/oaei_tests/benchmarks/251,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/251,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/251,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/251,OAEI2013 + EXTRAS4AML,4.5,1.1,1.7
+store/oaei_tests/benchmarks/261-4,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-4,OAEI2013,54.2,78.8,64.2
+store/oaei_tests/benchmarks/261-4,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-4,EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-4,AML + EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-4,OAEI2013 + EXTRAS4AML,54.0,81.8,65.1
+store/oaei_tests/benchmarks/253,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/253,OAEI2013,4.5,1.0,1.7
+store/oaei_tests/benchmarks/253,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/253,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/253,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/253,OAEI2013 + EXTRAS4AML,4.5,1.0,1.7
+store/oaei_tests/benchmarks/248-2,AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/248-2,OAEI2013,65.8,51.5,57.8
+store/oaei_tests/benchmarks/248-2,Lexical,100.0,26.8,42.3
+store/oaei_tests/benchmarks/248-2,EXTRAS4AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/248-2,AML + EXTRAS4AML,100.0,26.8,42.3
+store/oaei_tests/benchmarks/248-2,OAEI2013 + EXTRAS4AML,65.8,51.5,57.8
+store/oaei_tests/benchmarks/225,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/225,OAEI2013,48.7,100.0,65.5
+store/oaei_tests/benchmarks/225,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/225,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/225,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/225,OAEI2013 + EXTRAS4AML,48.7,100.0,65.5
+store/oaei_tests/benchmarks/210,AML,84.6,11.3,20.0
+store/oaei_tests/benchmarks/210,OAEI2013,26.9,18.6,22.0
+store/oaei_tests/benchmarks/210,Lexical,60.0,3.1,5.9
+store/oaei_tests/benchmarks/210,EXTRAS4AML,60.0,3.1,5.9
+store/oaei_tests/benchmarks/210,AML + EXTRAS4AML,84.6,11.3,20.0
+store/oaei_tests/benchmarks/210,OAEI2013 + EXTRAS4AML,26.9,18.6,22.0
+store/oaei_tests/benchmarks/101,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/101,OAEI2013,0.0,0.0,0.0
+store/oaei_tests/benchmarks/101,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/101,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/101,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/101,OAEI2013 + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/205,AML,81.3,13.4,23.0
+store/oaei_tests/benchmarks/205,OAEI2013,32.9,24.7,28.2
+store/oaei_tests/benchmarks/205,Lexical,81.8,9.3,16.7
+store/oaei_tests/benchmarks/205,EXTRAS4AML,81.8,9.3,16.7
+store/oaei_tests/benchmarks/205,AML + EXTRAS4AML,81.3,13.4,23.0
+store/oaei_tests/benchmarks/205,OAEI2013 + EXTRAS4AML,32.9,24.7,28.2
+store/oaei_tests/benchmarks/202-4,AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/202-4,OAEI2013,59.3,36.1,44.9
+store/oaei_tests/benchmarks/202-4,Lexical,100.0,20.6,34.2
+store/oaei_tests/benchmarks/202-4,EXTRAS4AML,100.0,21.6,35.6
+store/oaei_tests/benchmarks/202-4,AML + EXTRAS4AML,100.0,21.6,35.6
+store/oaei_tests/benchmarks/202-4,OAEI2013 + EXTRAS4AML,60.0,37.1,45.9
+store/oaei_tests/benchmarks/201,AML,100.0,6.2,11.7
+store/oaei_tests/benchmarks/201,OAEI2013,32.4,11.3,16.8
+store/oaei_tests/benchmarks/201,Lexical,100.0,6.2,11.7
+store/oaei_tests/benchmarks/201,EXTRAS4AML,100.0,6.2,11.7
+store/oaei_tests/benchmarks/201,AML + EXTRAS4AML,100.0,6.2,11.7
+store/oaei_tests/benchmarks/201,OAEI2013 + EXTRAS4AML,32.4,11.3,16.8
+store/oaei_tests/benchmarks/261-8,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-8,OAEI2013,54.2,78.8,64.2
+store/oaei_tests/benchmarks/261-8,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/261-8,EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-8,AML + EXTRAS4AML,96.4,81.8,88.5
+store/oaei_tests/benchmarks/261-8,OAEI2013 + EXTRAS4AML,54.0,81.8,65.1
+store/oaei_tests/benchmarks/202,AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/202,OAEI2013,4.5,1.0,1.7
+store/oaei_tests/benchmarks/202,Lexical,0.0,0.0,0.0
+store/oaei_tests/benchmarks/202,EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/202,AML + EXTRAS4AML,0.0,0.0,0.0
+store/oaei_tests/benchmarks/202,OAEI2013 + EXTRAS4AML,4.5,1.0,1.7
+store/oaei_tests/benchmarks/262-4,AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/262-4,OAEI2013,54.1,60.6,57.1
+store/oaei_tests/benchmarks/262-4,Lexical,100.0,60.6,75.5
+store/oaei_tests/benchmarks/262-4,EXTRAS4AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/262-4,AML + EXTRAS4AML,100.0,60.6,75.5
+store/oaei_tests/benchmarks/262-4,OAEI2013 + EXTRAS4AML,54.1,60.6,57.1
+store/oaei_tests/benchmarks/224,AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/224,OAEI2013,48.7,100.0,65.5
+store/oaei_tests/benchmarks/224,Lexical,100.0,34.0,50.8
+store/oaei_tests/benchmarks/224,EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/224,AML + EXTRAS4AML,100.0,34.0,50.8
+store/oaei_tests/benchmarks/224,OAEI2013 + EXTRAS4AML,48.7,100.0,65.5
+store/oaei_tests/benchmarks/258-2,AML,100.0,24.7,39.7
+store/oaei_tests/benchmarks/258-2,OAEI2013,62.3,46.2,53.1
+store/oaei_tests/benchmarks/258-2,Lexical,100.0,24.7,39.7
+store/oaei_tests/benchmarks/258-2,EXTRAS4AML,88.5,24.7,38.7
+store/oaei_tests/benchmarks/258-2,AML + EXTRAS4AML,88.5,24.7,38.7
+store/oaei_tests/benchmarks/258-2,OAEI2013 + EXTRAS4AML,59.7,46.2,52.1
+store/oaei_tests/benchmarks/247,AML,100.0,100.0,100.0
+store/oaei_tests/benchmarks/247,OAEI2013,60.0,100.0,75.0
+store/oaei_tests/benchmarks/247,Lexical,100.0,100.0,100.0
+store/oaei_tests/benchmarks/247,EXTRAS4AML,94.3,100.0,97.1
+store/oaei_tests/benchmarks/247,AML + EXTRAS4AML,97.1,100.0,98.5
+store/oaei_tests/benchmarks/247,OAEI2013 + EXTRAS4AML,58.9,100.0,74.2
+store/oaei_tests/benchmarks/251-4,AML,100.0,19.4,32.4
+store/oaei_tests/benchmarks/251-4,OAEI2013,56.4,33.3,41.9
+store/oaei_tests/benchmarks/251-4,Lexical,100.0,19.4,32.4
+store/oaei_tests/benchmarks/251-4,EXTRAS4AML,94.7,19.4,32.1
+store/oaei_tests/benchmarks/251-4,AML + EXTRAS4AML,94.7,19.4,32.1
+store/oaei_tests/benchmarks/251-4,OAEI2013 + EXTRAS4AML,55.4,33.3,41.6
+store/oaei_tests/benchmarks/201-8,AML,100.0,12.4,22.0
+store/oaei_tests/benchmarks/201-8,OAEI2013,43.2,19.6,27.0
+store/oaei_tests/benchmarks/201-8,Lexical,100.0,12.4,22.0
+store/oaei_tests/benchmarks/201-8,EXTRAS4AML,100.0,12.4,22.0
+store/oaei_tests/benchmarks/201-8,AML + EXTRAS4AML,100.0,12.4,22.0
+store/oaei_tests/benchmarks/201-8,OAEI2013 + EXTRAS4AML,43.2,19.6,27.0
+store/oaei_tests/benchmarks/249-4,AML,100.0,20.6,34.2
+store/oaei_tests/benchmarks/249-4,OAEI2013,59.3,36.1,44.9
+store/oaei_tests/benchmarks/249-4,Lexical,100.0,20.6,34.2
+store/oaei_tests/benchmarks/249-4,EXTRAS4AML,100.0,21.6,35.6
+store/oaei_tests/benchmarks/249-4,AML + EXTRAS4AML,100.0,21.6,35.6
+store/oaei_tests/benchmarks/249-4,OAEI2013 + EXTRAS4AML,60.0,37.1,45.9
+store/oaei_tests/benchmarks/254-2,AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/254-2,OAEI2013,60.5,78.8,68.4
+store/oaei_tests/benchmarks/254-2,Lexical,100.0,78.8,88.1
+store/oaei_tests/benchmarks/254-2,EXTRAS4AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/254-2,AML + EXTRAS4AML,100.0,78.8,88.1
+store/oaei_tests/benchmarks/254-2,OAEI2013 + EXTRAS4AML,60.5,78.8,68.4
+store/oaei_tests/benchmarks/301,AML,92.3,20.7,33.8
+store/oaei_tests/benchmarks/301,OAEI2013,52.2,20.7,29.6
+store/oaei_tests/benchmarks/301,Lexical,92.3,20.7,33.8
+store/oaei_tests/benchmarks/301,EXTRAS4AML,93.3,24.1,38.4
+store/oaei_tests/benchmarks/301,AML + EXTRAS4AML,93.3,24.1,38.4
+store/oaei_tests/benchmarks/301,OAEI2013 + EXTRAS4AML,56.0,24.1,33.7
