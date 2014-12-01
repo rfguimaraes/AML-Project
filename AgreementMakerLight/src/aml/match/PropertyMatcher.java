@@ -43,6 +43,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import aml.AML;
+import aml.extras4aml.Level2JaroWinkler;
 import aml.ontology.Property;
 import aml.ontology.URIMap;
 import aml.util.ISub;
@@ -249,7 +250,7 @@ public class PropertyMatcher
 		//Compute the Jaccard word similarity between the properties
 		double wordSim = Similarity.jaccard(sWords,tWords)*0.9;
 		//and the String similarity
-		double simString =  ISub.stringSimilarity(n1,n2)*0.9;
+		double simString = ISub.stringSimilarity(n1, n2)*0.9;
 		//Combine the two
 		double sim = 1 - ((1-wordSim) * (1-simString));
 		//Check if the WordNet similarity

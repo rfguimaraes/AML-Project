@@ -26,6 +26,7 @@ package aml.match;
 import java.util.HashSet;
 import java.util.Set;
 
+import aml.extras4aml.Level2JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.Levenshtein;
 import uk.ac.shef.wit.simmetrics.similaritymetrics.QGramsDistance;
@@ -273,7 +274,7 @@ public class ParametricStringMatcher implements SecondaryMatcher, PrimaryMatcher
 	{
 		double sim = 0.0;
 		if(measure.equals("ISub"))
-			sim = ISub.stringSimilarity(s,t);
+			sim = ISub.stringSimilarity(s, t);
 		else if(measure.equals("Edit"))
 		{
 			Levenshtein lv = new Levenshtein();

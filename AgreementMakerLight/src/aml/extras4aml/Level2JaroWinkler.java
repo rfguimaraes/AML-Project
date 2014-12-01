@@ -16,8 +16,8 @@
  * as proposed in http://secondstring.sourceforge.net/doc/iiweb03.pdf          *
  *                                                                             *
  * @author Ricardo F. Guimarães                                                *
- * @date 20-08-2014                                                            *
- * @version 0.1                                                                *
+ * @date 30-11-2014                                                            *
+ * @version 2.2e                                                               *
  ******************************************************************************/
 
 package aml.extras4aml;

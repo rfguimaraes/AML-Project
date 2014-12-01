@@ -15,8 +15,8 @@
  * Helper class which defines the translations (language and written form)     *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 30-07-2014                                                            *
- * @version 1.3                                                                *
+ * @date 30-11-2014                                                            *
+ * @version 2.2e                                                               *
  ******************************************************************************/
 
 package aml.extras4aml;

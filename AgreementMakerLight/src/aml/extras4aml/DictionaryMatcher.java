@@ -16,8 +16,8 @@
  * Lexicons after extension with the data obtained from the English Wiktionary,*
  * using wikt2dict.                                                            *
  * @author Ricardo F. Guimarães                                                *
- * @date 25-08-2014                                                            *
- * @version 0.72                                                               *
+ * @date 30-11-2014                                                            *
+ * @version 2.2e                                                               *
  ******************************************************************************/
 
 package aml.extras4aml;
@@ -97,7 +97,7 @@ public class DictionaryMatcher implements PrimaryMatcher, SecondaryMatcher,
 
         //Iterate through the original Lexicon names
         for (String s : source.getNames()) {
-            //We don't match formulas to Wiktionary
+            //We don't match formulas to the dictionary
             if (StringParser.isFormula(s))
                 continue;
 

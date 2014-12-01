@@ -16,8 +16,8 @@
  * wikt2dict                                                                   *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 22-10-2014                                                            *
- * @version 1.1                                                                *
+ * @date 30-11-2014                                                            *
+ * @version 2.2e                                                               *
  ******************************************************************************/
 
 package aml.extras4aml;

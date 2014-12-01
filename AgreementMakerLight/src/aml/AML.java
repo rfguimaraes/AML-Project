@@ -33,8 +33,8 @@
 * without reference, by invoking the static method AML.getInstance()          *
 *                                                                             *
 * @author Daniel Faria & Ricardo F. Guimarães                                 *
-* @date 07-10-2014                                                            *
-* @version 2.12e                                                              *
+* @date 30-11-2014                                                            *
+* @version 2.2e                                                              *
 ******************************************************************************/
 package aml;
 

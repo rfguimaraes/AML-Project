@@ -203,7 +203,7 @@ public class OAEI2013Matcher
 				if(uberonGain >= GAIN_MIN)
 					a.addAll(uberon);
 				//We don't use Uberon for lexical extension in large ontologies because it is likely to induce
-				//errors during string matching, and we don't use WordNet at all for the same reason and because
+				//errors during string matching , and we don't use WordNet at all for the same reason and because
 				//it is very time-consuming
 			}
 			case 2:

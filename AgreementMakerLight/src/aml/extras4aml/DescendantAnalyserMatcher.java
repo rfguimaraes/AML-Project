@@ -12,13 +12,11 @@
  * limitations under the License.                                              *
  *                                                                             *
  *******************************************************************************
- * Matches ontologies using a reasoner to find semantic correspondences        *
- * between entities. Largely based in the algorithms presented in:             *
- * http://doi.ieeecomputersociety.org/10.1109/IITA.2007.95                     *
- * Actually using the RelationshipMap to produce the same effect.              *
+ * Tries to find mapping based in the descendants mappings of each             *
+ *                                                                             *
  * @author Ricardo F. Guimarães                                                *
- * @date 29-08-2014                                                            *
- * @version 0.8                                                                *
+ * @date 30-11-2014                                                            *
+ * @version 2.2e                                                               *
  ******************************************************************************/
 
 package aml.extras4aml;
@@ -130,7 +128,7 @@ public class DescendantAnalyserMatcher implements SecondaryMatcher {
                 sChildren / 2) && tChildren > sChildren) {
             return MappingRelation.SUPERCLASS;
         } else if (isNear(nMaps, tChildren,
-                sChildren / 2) && sChildren > tChildren) {
+                tChildren / 2) && sChildren > tChildren) {
             return MappingRelation.SUBCLASS;
         } else {
             return MappingRelation.UNKNOWN;

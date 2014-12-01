@@ -15,8 +15,8 @@
  * Test class for the Extras4AML matchers.                                     *
  *                                                                             *
  * @authors Ricardo F. Guimarães                                               *
- * @date 07-10-2014                                                            *
- * @version 2.0e                                                               *
+ * @date 30-11-2014                                                            *
+ * @version 2.2e                                                               *
  ******************************************************************************/
 
 package aml;
@@ -35,7 +35,7 @@ public class AMLExtrasTest {
         for (File file : files) {
             if (file.isDirectory()){
                 showFiles(file.listFiles());
-            } else if (file.getPath().endsWith("onto.rdf")) {
+            } else if (file.getPath().endsWith("/onto.rdf")) {
                 eval(file.getParent());
             }
         }
